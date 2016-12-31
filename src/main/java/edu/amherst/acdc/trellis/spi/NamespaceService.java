@@ -15,6 +15,8 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import java.util.Map;
+
 /**
  * @author acoburn
  */
