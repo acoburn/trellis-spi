@@ -33,6 +33,14 @@ public interface ResourceService {
     Optional<Resource> find(final IRI identifier);
 
     /**
+     * Find a resource at the given location
+     * @param identifier the resource identifier
+     * @param type the resource type
+     * @return the resource
+     */
+    <T> Optional<T> find(final IRI identifier, final Class<T> type);
+
+    /**
      * Test whether a resource exists at the identifier
      * @param identifier the resource identifier
      * @return whether the identified resource exists
