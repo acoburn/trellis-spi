@@ -40,7 +40,6 @@ public interface FixityService {
      * @param session the session
      * @param identifier the resource identifier
      * @param result the fixity result
-     * @return the digest
      */
     void addFixityResult(final Session session, final IRI identifier, final FixityResult result);
 
