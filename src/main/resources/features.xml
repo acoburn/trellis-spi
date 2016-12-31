@@ -1,0 +1,14 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="trellis-spi-${project.version}">
+
+  <repository>mvn:edu.amherst.acdc/trellis-api/${trellisApiVersion}/xml/features</repository>
+
+  <feature name="trellis-spi" version="${project.version}">
+    <details>Installs the Trellis SPI bundle</details>
+
+    <feature version="${trellisApiVersionRange}">trellis-api</feature>
+
+    <bundle dependency="true">mvn:org.apache.commons/commons-rdf/${commonsRdfVersion}</bundle>
+    <bundle>mvn:edu.amherst.acdc/trellis-spi/${project.version}</bundle>
+  </feature>
+</features>
