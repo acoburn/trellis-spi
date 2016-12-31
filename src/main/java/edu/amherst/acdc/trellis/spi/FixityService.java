@@ -17,6 +17,7 @@ package edu.amherst.acdc.trellis.spi;
 
 import java.util.Optional;
 
+import edu.amherst.acdc.trellis.api.FixityResult;
 import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
@@ -32,6 +33,15 @@ public interface FixityService {
      * @param algorithm the algorithm to use
      * @return the digest
      */
-    Optional<String> computeDigest(final Session session, final IRI identifier, final String algorithm);
+    Optional<FixityResult> computeDigest(final Session session, final IRI identifier, final String algorithm);
+
+    /**
+     * Compute the fixity of a resource
+     * @param session the session
+     * @param identifier the resource identifier
+     * @param result the fixity result
+     * @return the digest
+     */
+    void addFixityResult(final Session session, final IRI identifier, final FixityResult result);
 
 }
