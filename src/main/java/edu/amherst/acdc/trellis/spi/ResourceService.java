@@ -39,6 +39,7 @@ public interface ResourceService {
      * @param session the session
      * @param identifier the resource identifier
      * @param type the resource type
+     * @param <T> the type of resource to return
      * @return the resource
      */
     <T> Optional<T> find(final Session session, final IRI identifier, final Class<T> type);
