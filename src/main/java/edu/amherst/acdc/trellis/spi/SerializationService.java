@@ -18,6 +18,7 @@ package edu.amherst.acdc.trellis.spi;
 import java.io.OutputStream;
 import java.util.stream.Stream;
 
+import edu.amherst.acdc.trellis.api.Event;
 import org.apache.commons.rdf.api.Triple;
 
 /**
@@ -42,4 +43,12 @@ public interface SerializationService {
      */
     void serialize(final Stream<Triple> triples, final OutputStream output, final String format, final String profile);
 
+
+    /**
+     * Serialize an event as RDF
+     * @param event the event
+     * @param output the output stream
+     * @param format the format
+     */
+    void serialize(final Event event, final OutputStream output, final String format);
 }
