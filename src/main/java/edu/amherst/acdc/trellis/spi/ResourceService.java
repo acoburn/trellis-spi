@@ -15,6 +15,9 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import java.util.stream.Stream;
+
+import edu.amherst.acdc.trellis.api.Fixity;
 import edu.amherst.acdc.trellis.api.Resource;
 import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
@@ -60,4 +63,20 @@ public interface ResourceService {
      * @return the new resource
      */
     Resource create(Session session, IRI identifier, IRI type);
+
+    /**
+     * Add the fixity computation to a resource
+     * @param session the session
+     * @param resource the resource identifier
+     * @param result the fixity result
+     */
+    void addFixity(Session session, IRI resource, Fixity result);
+
+    /**
+     * Retrieve the fixity history for a resource
+     * @param session the session
+     * @param resource the resource identifier
+     * @return a stream of fixity results
+     */
+    Stream<Fixity> getFixity(Session session, IRI resource);
 }

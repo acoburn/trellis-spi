@@ -19,7 +19,6 @@ import java.io.InputStream;
 import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Fixity;
-import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -43,7 +42,7 @@ public interface DatastreamService {
 
     /**
      * Set the content for a datastream
-     * @param identifier the identifier
+     * @param identifier the datastream identifier
      * @param stream the content
      * @param contentType the contentType
      */
@@ -56,13 +55,5 @@ public interface DatastreamService {
      * @return the digest
      */
     Optional<Fixity> computeDigest(IRI identifier, String algorithm);
-
-    /**
-     * Add the fixity computation to a resource
-     * @param session the session
-     * @param identifier the resource identifier
-     * @param result the fixity result
-     */
-    void addFixity(Session session, IRI identifier, Fixity result);
 
 }
