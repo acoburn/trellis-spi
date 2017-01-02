@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Fixity;
+import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -50,7 +51,6 @@ public interface DatastreamService {
 
     /**
      * Compute the fixity of a resource
-     * @param session the session
      * @param identifier the datastream identifier
      * @param algorithm the algorithm to use
      * @return the digest
