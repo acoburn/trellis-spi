@@ -29,5 +29,5 @@ public interface IdGeneratorService {
      * @param prefix the prefix
      * @return an IRI Supplier
      */
-    Supplier<IRI> getGenerator(final IRI prefix);
+    Supplier<IRI> getGenerator(IRI prefix);
 }

@@ -32,7 +32,7 @@ public interface SerializationService {
      * @param output the output stream
      * @param format the output format
      */
-    void serialize(final Stream<Triple> triples, final OutputStream output, final String format);
+    void serialize(Stream<Triple> triples, OutputStream output, String format);
 
     /**
      * Serialize the triple stream as RDF
@@ -41,7 +41,7 @@ public interface SerializationService {
      * @param format the output format
      * @param profile additional profile information used for output
      */
-    void serialize(final Stream<Triple> triples, final OutputStream output, final String format, final String profile);
+    void serialize(Stream<Triple> triples, OutputStream output, String format, String profile);
 
 
     /**
@@ -50,5 +50,5 @@ public interface SerializationService {
      * @param output the output stream
      * @param format the format
      */
-    void serialize(final Event event, final OutputStream output, final String format);
+    void serialize(Event event, OutputStream output, String format);
 }

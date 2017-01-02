@@ -16,7 +16,9 @@
 package edu.amherst.acdc.trellis.spi;
 
 import java.util.Optional;
+import java.util.stream.Stream;
 
+import edu.amherst.acdc.trellis.api.Authorization;
 import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
@@ -31,7 +33,7 @@ public interface AccessControlService {
      * @param identifier the resource identifier
      * @return whether the user can read the identified resource
      */
-    Boolean canRead(final Session session, final IRI identifier);
+    Boolean canRead(Session session, IRI identifier);
 
     /**
      * Test whether the resource is writeable
@@ -39,7 +41,7 @@ public interface AccessControlService {
      * @param identifier the resource identifier
      * @return whether the user can write to identified resource
      */
-    Boolean canWrite(final Session session, final IRI identifier);
+    Boolean canWrite(Session session, IRI identifier);
 
     /**
      * Test whether the user can control the ACL for the given resource
@@ -47,12 +49,26 @@ public interface AccessControlService {
      * @param identifier the resource identifier
      * @return whether the user can control the ACL for the identified resource
      */
-    Boolean canControl(final Session session, final IRI identifier);
+    Boolean canControl(Session session, IRI identifier);
 
     /**
      * Find the effective ACL for the given resource identifier
      * @param identifier the resource identifier
      * @return the ACL identifier
      */
-    Optional<IRI> findAclFor(final IRI identifier);
+    Optional<IRI> findAclFor(IRI identifier);
+
+    /**
+     * Find the first ancestor resource with an access control declaration
+     * @param identifier the starting resource
+     * @return the resource identifier
+     */
+    Optional<IRI> findAncestorWithAccessControl(IRI identifier);
+
+    /**
+     * Fetch the authorizations for the provided resource
+     * @param identifier the resource containing acl:Authorization statements
+     * @return a stream of Authorizations
+     */
+    Stream<Authorization> getAuthorizations(IRI identifier);
 }

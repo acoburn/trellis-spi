@@ -32,7 +32,7 @@ public interface ResourceService {
      * @param <T> the type of resource to return
      * @return the resource
      */
-    <T extends Resource> T find(final Session session, final IRI identifier, final Class<T> type);
+    <T extends Resource> T find(Session session, IRI identifier, Class<T> type);
 
     /**
      * Test whether a resource exists at the identifier
@@ -40,7 +40,7 @@ public interface ResourceService {
      * @param identifier the resource identifier
      * @return whether the identified resource exists
      */
-    Boolean exists(final Session session, final IRI identifier);
+    Boolean exists(Session session, IRI identifier);
 
     /**
      * Create a new resource
@@ -50,7 +50,7 @@ public interface ResourceService {
      * @param <T> the resource type
      * @return the new resource
      */
-    <T extends Resource> T create(final Session session, final IRI identifier, final Class<T> type);
+    <T extends Resource> T create(Session session, IRI identifier, Class<T> type);
 
     /**
      * Create a new resource
@@ -59,5 +59,5 @@ public interface ResourceService {
      * @param type the type of the resource
      * @return the new resource
      */
-    Resource create(final Session session, final IRI identifier, final IRI type);
+    Resource create(Session session, IRI identifier, IRI type);
 }

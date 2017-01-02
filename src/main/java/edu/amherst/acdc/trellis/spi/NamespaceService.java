@@ -33,13 +33,13 @@ public interface NamespaceService {
      * @param prefix the prefix
      * @return the corresponding namespace
      */
-    String getNamespace(final String prefix);
+    String getNamespace(String prefix);
 
     /**
      * Set the namespace for a given prefix
      * @param prefix the prefix
      * @param namespace the namespace
      */
-    void setNamespace(final String prefix, final String namespace);
+    void setNamespace(String prefix, String namespace);
 
 }

@@ -32,14 +32,14 @@ public interface DatastreamService {
      * @param identifier an identifier used for locating the datastream
      * @return the content
      */
-    InputStream getContent(final IRI identifier);
+    InputStream getContent(IRI identifier);
 
     /**
      * Test whether a datastream exists at the given URI
      * @param identifier the datastream identifier
      * @return whether the datastream exists
      */
-    Boolean exists(final IRI identifier);
+    Boolean exists(IRI identifier);
 
     /**
      * Set the content for a datastream
@@ -47,7 +47,7 @@ public interface DatastreamService {
      * @param stream the content
      * @param contentType the contentType
      */
-    void setContent(final IRI identifier, final InputStream stream, final String contentType);
+    void setContent(IRI identifier, InputStream stream, String contentType);
 
     /**
      * Compute the fixity of a resource
@@ -55,7 +55,7 @@ public interface DatastreamService {
      * @param algorithm the algorithm to use
      * @return the digest
      */
-    Optional<Fixity> computeDigest(final IRI identifier, final String algorithm);
+    Optional<Fixity> computeDigest(IRI identifier, String algorithm);
 
     /**
      * Add the fixity computation to a resource
@@ -63,6 +63,6 @@ public interface DatastreamService {
      * @param identifier the resource identifier
      * @param result the fixity result
      */
-    void addFixity(final Session session, final IRI identifier, final Fixity result);
+    void addFixity(Session session, IRI identifier, Fixity result);
 
 }
