@@ -19,7 +19,7 @@ import java.io.OutputStream;
 import java.util.stream.Stream;
 
 import edu.amherst.acdc.trellis.api.Event;
-import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.RDFSyntax;
 import org.apache.commons.rdf.api.Triple;
 
 /**
@@ -34,25 +34,25 @@ public interface SerializationService {
      * Serialize the triple stream as RDF
      * @param triples the stream of triples
      * @param output the output stream
-     * @param contentType the output format
+     * @param syntax the output format
      */
-    void serialize(Stream<Triple> triples, OutputStream output, String contentType);
+    void serialize(Stream<Triple> triples, OutputStream output, RDFSyntax syntax);
 
     /**
      * Serialize the triple stream as RDF
      * @param triples the stream of triples
      * @param output the output stream
-     * @param contentType the output format
+     * @param syntax the output format
      * @param profile additional profile information used for output
      */
-    void serialize(Stream<Triple> triples, OutputStream output, String contentType, String profile);
+    void serialize(Stream<Triple> triples, OutputStream output, RDFSyntax syntax, String profile);
 
 
     /**
      * Serialize an event as RDF
      * @param event the event
      * @param output the output stream
-     * @param contentType the output format
+     * @param syntax the output format
      */
-    void serialize(Event event, OutputStream output, String contentType);
+    void serialize(Event event, OutputStream output, RDFSyntax syntax);
 }
