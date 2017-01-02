@@ -16,7 +16,9 @@
 package edu.amherst.acdc.trellis.spi;
 
 import java.io.InputStream;
+import java.util.Optional;
 
+import edu.amherst.acdc.trellis.api.Fixity;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -45,5 +47,22 @@ public interface DatastreamService {
      * @param contentType the contentType
      */
     void setContent(final IRI identifier, final InputStream stream, final String contentType);
+
+    /**
+     * Compute the fixity of a resource
+     * @param session the session
+     * @param identifier the datastream identifier
+     * @param algorithm the algorithm to use
+     * @return the digest
+     */
+    Optional<Fixity> computeDigest(final IRI identifier, final String algorithm);
+
+    /**
+     * Add the fixity computation to a resource
+     * @param session the session
+     * @param identifier the resource identifier
+     * @param result the fixity result
+     */
+    void addFixity(final Session session, final IRI identifier, final Fixity result);
 
 }
