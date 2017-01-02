@@ -22,6 +22,9 @@ import edu.amherst.acdc.trellis.api.Fixity;
 import org.apache.commons.rdf.api.IRI;
 
 /**
+ * The DatastreamService provides methods for retrieving, modifying and checking
+ * the validity of binary content.
+ *
  * @author acoburn
  */
 public interface DatastreamService {

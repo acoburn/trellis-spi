@@ -20,6 +20,8 @@ import java.util.function.Supplier;
 import org.apache.commons.rdf.api.IRI;
 
 /**
+ * The IdGeneratorService provides a mechanism for creating new identifiers.
+ *
  * @author acoburn
  */
 public interface IdGeneratorService {

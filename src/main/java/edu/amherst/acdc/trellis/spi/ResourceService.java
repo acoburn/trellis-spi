@@ -23,9 +23,20 @@ import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
 /**
+ * The ResourceService provides methods for creating, retrieving and manipulating
+ * repository resources.
+ *
  * @author acoburn
  */
 public interface ResourceService {
+
+    /**
+     * Find a resource at the given location
+     * @param session the session
+     * @param identifier the resource identifier
+     * @return the resource
+     */
+    Resource find(Session session, IRI identifier);
 
     /**
      * Find a resource at the given location

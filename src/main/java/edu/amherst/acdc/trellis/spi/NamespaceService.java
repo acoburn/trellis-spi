@@ -18,6 +18,9 @@ package edu.amherst.acdc.trellis.spi;
 import java.util.Map;
 
 /**
+ * Namespaces may be stored globally across the repository, and the NamespaceService
+ * provides a mechanism for retrieving and setting namespace values.
+ *
  * @author acoburn
  */
 public interface NamespaceService {

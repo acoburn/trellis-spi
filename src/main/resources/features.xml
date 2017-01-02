@@ -8,7 +8,7 @@
 
     <feature version="${trellisApiVersionRange}">trellis-api</feature>
 
-    <bundle dependency="true">mvn:org.apache.commons/commons-rdf/${commonsRdfVersion}</bundle>
+    <bundle dependency="true">mvn:org.apache.commons/commons-rdf-api/${commonsRdfVersion}</bundle>
     <bundle>mvn:edu.amherst.acdc/trellis-spi/${project.version}</bundle>
   </feature>
 </features>

@@ -23,6 +23,12 @@ import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
 /**
+ * The AccessControlService provides methods for checking user access to given resources
+ * as well as services for finding the applicable access control resource.
+ *
+ * @see <a href="https://www.w3.org/wiki/WebAccessControl">W3C WebAccessControl</a>
+ * and <a href="https://github.com/solid/web-access-control-spec">Solid WebAC specification</a>
+ *
  * @author acoburn
  */
 public interface AccessControlService {
