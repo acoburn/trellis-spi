@@ -25,6 +25,7 @@ import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import edu.amherst.acdc.trellis.api.Event;
+import edu.amherst.acdc.trellis.vocabulary.AS;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -91,7 +92,7 @@ class ActivityStreamMessage {
         final Map<String, Object> ctxAdditions = new HashMap<>();
         ctxAdditions.put("date", new ContextDate());
 
-        context.add("https://www.w3.org/ns/activitystreams");
+        context.add(AS.uri);
         context.add(ctxAdditions);
 
         msg.context = context;

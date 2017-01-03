@@ -28,6 +28,7 @@ ext {
 
     /* Dependencies */
     trellisApiVersion = '0.1.0-SNAPSHOT'
+    trellisVocabularyVersion = '0.1.0-SNAPSHOT'
     commonsRdfVersion = '0.3.0-incubating'
     jacksonVersion = '2.8.5'
 
@@ -37,6 +38,7 @@ ext {
 
     /* OSGi */
     trellisApiVersionRange = '0.1.0-SNAPSHOT'
+    trellisVocabularyVersionRange = '0.1.0-SNAPSHOT'
     defaultOsgiImports = '*'
     projectOsgiVersion = project.version.replaceAll("-SNAPSHOT", ".SNAPSHOT")
 }
@@ -47,6 +49,7 @@ configurations {
 
 dependencies {
     compile group: 'edu.amherst.acdc', name: 'trellis-api', version: trellisApiVersion
+    compile group: 'edu.amherst.acdc', name: 'trellis-vocabulary', version: trellisVocabularyVersion
     compile group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
