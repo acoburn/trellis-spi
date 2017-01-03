@@ -15,6 +15,8 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import java.util.Optional;
+
 import edu.amherst.acdc.trellis.api.Event;
 
 /**
@@ -30,4 +32,13 @@ public interface EventService {
      * @param event the event
      */
     void emit(Event event);
+
+    /**
+     * Serialize an event
+     * @param event the event
+     * @param type the serialization type
+     * @param <T> the return type
+     * @return the serialized event
+     */
+    <T> Optional<T> serialize(Event event, Class<T> type);
 }
