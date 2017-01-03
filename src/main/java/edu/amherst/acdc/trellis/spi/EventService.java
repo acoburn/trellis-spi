@@ -34,11 +34,12 @@ public interface EventService {
     void emit(Event event);
 
     /**
-     * Serialize an event
+     * Serialize an event as a JSON string
      * @param event the event
-     * @param type the serialization type
-     * @param <T> the return type
      * @return the serialized event
      */
-    <T> Optional<T> serialize(Event event, Class<T> type);
+    static Optional<String> serialize(final Event event) {
+        final ActivityStreamSerializer serializer = new ActivityStreamSerializer(event);
+        return serializer.serialize();
+    }
 }

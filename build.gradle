@@ -29,6 +29,11 @@ ext {
     /* Dependencies */
     trellisApiVersion = '0.1.0-SNAPSHOT'
     commonsRdfVersion = '0.3.0-incubating'
+    jacksonVersion = '2.8.5'
+
+    /* Testing */
+    junitVersion = '4.12'
+    mockitoVersion = '1.10.19'
 
     /* OSGi */
     trellisApiVersionRange = '0.1.0-SNAPSHOT'
@@ -43,6 +48,13 @@ configurations {
 dependencies {
     compile group: 'edu.amherst.acdc', name: 'trellis-api', version: trellisApiVersion
     compile group: 'org.apache.commons', name: 'commons-rdf-api', version: commonsRdfVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
+    compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+
+    testCompile group: 'junit', name: 'junit', version: junitVersion
+    testCompile group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
+    testCompile group: 'org.apache.commons', name: 'commons-rdf-simple', version: commonsRdfVersion
     buildToolsConfig 'edu.amherst.acdc:acrepo-build-tools:0.1.0'
 }
 
