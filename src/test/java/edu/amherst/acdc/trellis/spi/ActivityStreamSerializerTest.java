@@ -20,6 +20,8 @@ import static java.util.Collections.singleton;
 import static java.util.Optional.of;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
+import static edu.amherst.acdc.trellis.vocabulary.AS.Create;
+import static edu.amherst.acdc.trellis.vocabulary.LDP.Container;
 
 import java.util.Optional;
 
@@ -51,8 +53,8 @@ public class ActivityStreamSerializerTest {
         when(mockEvent.getIdentifier()).thenReturn(rdf.createIRI("info:event/12345"));
         when(mockEvent.getAgents()).thenReturn(singleton(rdf.createIRI("info:user/test")));
         when(mockEvent.getTarget()).thenReturn(of(rdf.createIRI("info:trellis/resource")));
-        when(mockEvent.getTypes()).thenReturn(singleton(rdf.createIRI("info:event/creation")));
-        when(mockEvent.getTargetTypes()).thenReturn(singleton(rdf.createIRI("info:type/container")));
+        when(mockEvent.getTypes()).thenReturn(singleton(Create));
+        when(mockEvent.getTargetTypes()).thenReturn(singleton(Container));
         when(mockEvent.getCreated()).thenReturn(now());
         when(mockEvent.getInbox()).thenReturn(of(rdf.createIRI("info:ldn/inbox")));
     }
