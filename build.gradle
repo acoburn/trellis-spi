@@ -37,8 +37,6 @@ ext {
     mockitoVersion = '1.10.19'
 
     /* OSGi */
-    trellisApiVersionRange = '0.1.0-SNAPSHOT'
-    trellisVocabularyVersionRange = '0.1.0-SNAPSHOT'
     projectOsgiVersion = project.version.replaceAll("-SNAPSHOT", ".SNAPSHOT")
 }
 
