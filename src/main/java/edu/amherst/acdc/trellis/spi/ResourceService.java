@@ -19,7 +19,6 @@ import java.util.stream.Stream;
 
 import edu.amherst.acdc.trellis.api.Fixity;
 import edu.amherst.acdc.trellis.api.Resource;
-import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
 /**

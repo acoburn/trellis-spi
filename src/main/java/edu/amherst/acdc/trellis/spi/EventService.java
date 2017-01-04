@@ -17,8 +17,6 @@ package edu.amherst.acdc.trellis.spi;
 
 import java.util.Optional;
 
-import edu.amherst.acdc.trellis.api.Event;
-
 /**
  * The EventService provides a mechanism by which events can be emitted
  * to a message broker.

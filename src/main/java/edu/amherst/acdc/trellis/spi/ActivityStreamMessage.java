@@ -24,7 +24,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import edu.amherst.acdc.trellis.api.Event;
 import edu.amherst.acdc.trellis.vocabulary.AS;
 import org.apache.commons.rdf.api.IRI;
 

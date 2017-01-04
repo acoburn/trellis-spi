@@ -25,7 +25,6 @@ import static edu.amherst.acdc.trellis.vocabulary.LDP.Container;
 
 import java.util.Optional;
 
-import edu.amherst.acdc.trellis.api.Event;
 import org.apache.commons.rdf.api.RDF;
 import org.apache.commons.rdf.simple.SimpleRDF;
 import org.junit.Before;

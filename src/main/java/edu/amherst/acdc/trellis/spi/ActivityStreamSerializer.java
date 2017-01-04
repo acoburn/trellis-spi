@@ -25,7 +25,6 @@ import java.util.Optional;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
-import edu.amherst.acdc.trellis.api.Event;
 
 /**
  * @author acoburn

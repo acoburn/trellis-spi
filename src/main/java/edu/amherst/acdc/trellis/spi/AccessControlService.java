@@ -18,8 +18,6 @@ package edu.amherst.acdc.trellis.spi;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import edu.amherst.acdc.trellis.api.Authorization;
-import edu.amherst.acdc.trellis.api.Session;
 import org.apache.commons.rdf.api.IRI;
 
 /**
