@@ -19,6 +19,7 @@ import java.io.InputStream;
 import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Fixity;
+import edu.amherst.acdc.trellis.api.Datastream;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -59,4 +60,21 @@ public interface DatastreamService {
      */
     Optional<Fixity> computeDigest(IRI identifier, String algorithm);
 
+    /**
+     * Generate an identifier for a new datastream resource
+     * @param identifier the resource identifier
+     * @return an identifier for the datastream
+     */
+    default IRI generateIdentifier(IRI identifier) {
+        return generateIdentifier(identifier, null);
+    }
+
+    /**
+     * Generate an identifier for a new datastream resource using a particular
+     * partition hint.
+     * @param identifier the resource identifier
+     * @param partition the partition to use
+     * @return the new identifier for the datastream
+     */
+    IRI generateIdentifier(IRI identifier, Datastream.StoragePartition partition);
 }
