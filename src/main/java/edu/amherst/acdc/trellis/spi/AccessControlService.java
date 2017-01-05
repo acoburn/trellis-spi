@@ -18,6 +18,7 @@ package edu.amherst.acdc.trellis.spi;
 import java.util.Optional;
 import java.util.stream.Stream;
 
+import edu.amherst.acdc.trellis.api.Resource;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -67,7 +68,7 @@ public interface AccessControlService {
      * @param identifier the starting resource
      * @return the resource identifier
      */
-    Optional<IRI> findAncestorWithAccessControl(IRI identifier);
+    Optional<Resource> findAncestorWithAccessControl(IRI identifier);
 
     /**
      * Fetch the authorizations for the provided resource
