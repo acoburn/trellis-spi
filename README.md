@@ -6,6 +6,6 @@ The service interfaces for a Trellis-based repository.
 
 ## Building
 
-This code can be built with Gradle:
+This code requires Java 8 and can be built with Gradle:
 
     ./gradlew install
