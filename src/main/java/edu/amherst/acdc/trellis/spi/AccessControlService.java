@@ -57,6 +57,14 @@ public interface AccessControlService {
     Boolean canControl(Session session, IRI identifier);
 
     /**
+     * Test whether the user can append the given resource
+     * @param session the user session
+     * @param identifier the resource identifier
+     * @return whether the user can append the identified resource
+     */
+    Boolean canAppend(Session session, IRI identifier);
+
+    /**
      * Find the effective ACL for the given resource identifier
      * @param identifier the resource identifier
      * @return the ACL identifier
