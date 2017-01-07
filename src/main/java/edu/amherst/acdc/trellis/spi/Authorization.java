@@ -16,6 +16,7 @@
 package edu.amherst.acdc.trellis.spi;
 
 import static java.util.Collections.unmodifiableSet;
+import static java.util.Objects.requireNonNull;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -54,6 +55,9 @@ public class Authorization {
      * @param graph the RDF graph
      */
     public Authorization(final IRI identifier, final Graph graph) {
+        requireNonNull(identifier, "The Authorization identifier may not be null!");
+        requireNonNull(graph, "The input graph may not be null!");
+
         this.identifier = identifier;
         dataMap.put(ACL.agent, new HashSet<>());
         dataMap.put(ACL.agentClass, new HashSet<>());

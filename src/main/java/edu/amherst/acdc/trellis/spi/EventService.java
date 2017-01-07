@@ -15,6 +15,8 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import static java.util.Objects.requireNonNull;
+
 import java.util.Optional;
 
 /**
@@ -37,6 +39,7 @@ public interface EventService {
      * @return the serialized event
      */
     static Optional<String> serialize(final Event event) {
+        requireNonNull(event, "The event may not be null!");
         final ActivityStreamSerializer serializer = new ActivityStreamSerializer(event);
         return serializer.serialize();
     }
