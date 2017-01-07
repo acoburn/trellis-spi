@@ -31,10 +31,12 @@ ext {
     trellisVocabularyVersion = '0.1.0-SNAPSHOT'
     commonsRdfVersion = '0.3.0-incubating'
     jacksonVersion = '2.8.5'
+    slf4jVersion = '1.7.21'
 
     /* Testing */
     junitVersion = '4.12'
     mockitoVersion = '1.10.19'
+    logbackVersion = '1.1.7'
 
     /* OSGi */
     projectOsgiVersion = project.version.replaceAll("-SNAPSHOT", ".SNAPSHOT")
@@ -51,10 +53,13 @@ dependencies {
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: jacksonVersion
     compile group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: jacksonVersion
     compile group: 'com.fasterxml.jackson.datatype', name: 'jackson-datatype-jsr310', version: jacksonVersion
+    compile group: 'org.slf4j', name: 'slf4j-api', version: slf4jVersion
 
     testCompile group: 'junit', name: 'junit', version: junitVersion
     testCompile group: 'org.mockito', name: 'mockito-core', version: mockitoVersion
     testCompile group: 'org.apache.commons', name: 'commons-rdf-simple', version: commonsRdfVersion
+    testCompile group: 'ch.qos.logback', name: 'logback-classic', version: logbackVersion
+
     buildToolsConfig 'edu.amherst.acdc:acrepo-build-tools:0.2.0'
 }
 
