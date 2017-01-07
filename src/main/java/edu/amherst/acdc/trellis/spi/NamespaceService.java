@@ -16,6 +16,7 @@
 package edu.amherst.acdc.trellis.spi;
 
 import java.util.Map;
+import java.util.Optional;
 
 /**
  * Namespaces may be stored globally across the repository, and the NamespaceService
@@ -27,7 +28,7 @@ public interface NamespaceService {
 
     /**
      * Fetch the entire namespace mapping
-     * @return the namespace mapping
+     * @return the namespace mapping as prefix, namespace pairs
      */
     Map<String, String> getNamespaces();
 
@@ -36,13 +37,21 @@ public interface NamespaceService {
      * @param prefix the prefix
      * @return the corresponding namespace
      */
-    String getNamespace(String prefix);
+    Optional<String> getNamespace(String prefix);
+
+    /**
+     * Fetch the prefix for a particular namespace
+     * @param namespace the namespace
+     * @return the corresponding prefix
+     */
+    Optional<String> getPrefix(String namespace);
 
     /**
      * Set the namespace for a given prefix
      * @param prefix the prefix
      * @param namespace the namespace
+     * @return whether the new prefix was set
      */
-    void setNamespace(String prefix, String namespace);
+    Boolean setPrefix(String prefix, String namespace);
 
 }
