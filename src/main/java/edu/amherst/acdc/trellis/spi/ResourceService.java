@@ -15,7 +15,10 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import java.util.Optional;
+
 import edu.amherst.acdc.trellis.api.Resource;
+import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -28,29 +31,26 @@ public interface ResourceService {
 
     /**
      * Find a resource at the given location
-     * @param session the session
      * @param identifier the resource identifier
      * @return the resource
      */
-    Resource find(Session session, IRI identifier);
+    Optional<Resource> find(IRI identifier);
 
     /**
      * Find a resource at the given location
-     * @param session the session
      * @param identifier the resource identifier
      * @param type the resource type
      * @param <T> the type of resource to return
      * @return the resource
      */
-    <T extends Resource> T find(Session session, IRI identifier, Class<T> type);
+    <T extends Resource> Optional<T> find(IRI identifier, Class<T> type);
 
     /**
      * Test whether a resource exists at the identifier
-     * @param session the session
      * @param identifier the resource identifier
      * @return whether the identified resource exists
      */
-    Boolean exists(Session session, IRI identifier);
+    Boolean exists(IRI identifier);
 
     /**
      * Create a new resource
@@ -70,4 +70,19 @@ public interface ResourceService {
      * @return the new resource
      */
     Resource create(Session session, IRI identifier, IRI type);
+
+    /**
+     * Update a resource
+     * @param session the session
+     * @param identifier the resource identifier
+     * @param graph the new graph
+     */
+    void update(Session session, IRI identifier, Graph graph);
+
+    /**
+     * Delete a resource
+     * @param session the session
+     * @param identifier the resource identifier
+     */
+    void delete(Session session, IRI identifier);
 }
