@@ -29,6 +29,44 @@ import org.apache.commons.rdf.api.IRI;
 public interface DatastreamService {
 
     /**
+     * A datastream resolver, used by the DatastreamService
+     */
+    interface DatastreamResolver {
+        /**
+         * @return the uri scheme supported by this resolver
+         */
+        String getUriScheme();
+
+        /**
+         * Resolve the datastream
+         * @param identifier the identifier
+         * @return the content of the datastream
+         */
+        InputStream resolve(IRI identifier);
+
+        /**
+         * Whether this resolver supports the given storage partition
+         * @param partition the partition
+         * @return whether it is supported
+         */
+        Boolean supportsPartition(Datastream.StoragePartition partition);
+
+        /**
+         * Whether the given IRI is supported by this resolver
+         * @param identifier the identifier
+         * @return whether it is supported
+         */
+        Boolean supportsIRI(IRI identifier);
+
+        /**
+         * Given a resource identifier, generate a location for the datastream
+         * @param resource the resource identifier
+         * @return the datastream identifier
+         */
+        IRI generateIdentifier(IRI resource);
+    }
+
+    /**
      * Get the content of the datastream
      * @param identifier an identifier used for locating the datastream
      * @return the content
