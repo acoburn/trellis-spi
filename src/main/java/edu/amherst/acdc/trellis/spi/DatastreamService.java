@@ -16,6 +16,7 @@
 package edu.amherst.acdc.trellis.spi;
 
 import java.io.InputStream;
+import java.util.List;
 
 import edu.amherst.acdc.trellis.api.Datastream;
 import org.apache.commons.rdf.api.IRI;
@@ -33,9 +34,9 @@ public interface DatastreamService {
      */
     interface DatastreamResolver {
         /**
-         * @return the uri scheme supported by this resolver
+         * @return the uri schemes supported by this resolver
          */
-        String getUriScheme();
+        List<String> getUriSchemes();
 
         /**
          * Resolve the datastream
