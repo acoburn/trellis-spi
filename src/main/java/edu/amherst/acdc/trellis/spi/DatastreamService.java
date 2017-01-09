@@ -33,18 +33,33 @@ public interface DatastreamService {
     /**
      * A datastream resolver, used by the DatastreamService
      */
-    interface DatastreamResolver {
+    interface Resolver {
         /**
          * @return the uri schemes supported by this resolver
          */
         List<String> getUriSchemes();
 
         /**
-         * Resolve the datastream
+         * Get the content of the datastream
          * @param identifier the identifier
          * @return the content of the datastream
          */
-        InputStream fetch(IRI identifier);
+        Optional<InputStream> getContent(IRI identifier);
+
+        /**
+         * Check whether the datastream exists
+         * @param identifier the identifier
+         * @return whether the datastream exists
+         */
+        Boolean exists(IRI identifier);
+
+        /**
+         * Set the content of the datastream
+         * @param identifier the identifier
+         * @param stream the content
+         * @param contentType the datastream contentType
+         */
+        void setContent(IRI identifier, InputStream stream, String contentType);
     }
 
     /**
@@ -52,7 +67,7 @@ public interface DatastreamService {
      * @param identifier an identifier used for locating the datastream
      * @return the content
      */
-    InputStream getContent(IRI identifier);
+    Optional<InputStream> getContent(IRI identifier);
 
     /**
      * Test whether a datastream exists at the given URI
@@ -71,10 +86,11 @@ public interface DatastreamService {
 
     /**
      * Calculate the digest for a datastream
+     * @param identifier the identifier
      * @param algorithm the algorithm
      * @return the digest
      */
-    Optional<String> calculateDigest(String algorithm);
+    Optional<String> calculateDigest(IRI identifier, String algorithm);
 
     /**
      * Generate an identifier for a new datastream resource
