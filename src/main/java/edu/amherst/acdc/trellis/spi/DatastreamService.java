@@ -17,6 +17,7 @@ package edu.amherst.acdc.trellis.spi;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Datastream;
 import org.apache.commons.rdf.api.IRI;
@@ -67,6 +68,13 @@ public interface DatastreamService {
      * @param contentType the contentType
      */
     void setContent(IRI identifier, InputStream stream, String contentType);
+
+    /**
+     * Calculate the digest for a datastream
+     * @param algorithm the algorithm
+     * @return the digest
+     */
+    Optional<String> calculateDigest(String algorithm);
 
     /**
      * Generate an identifier for a new datastream resource
