@@ -17,6 +17,7 @@ package edu.amherst.acdc.trellis.spi;
 
 import java.io.InputStream;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Datastream;
@@ -57,9 +58,9 @@ public interface DatastreamService {
          * Set the content of the datastream
          * @param identifier the identifier
          * @param stream the content
-         * @param contentType the datastream contentType
+         * @param metadata any user metadata
          */
-        void setContent(IRI identifier, InputStream stream, String contentType);
+        void setContent(IRI identifier, InputStream stream, Map<String, String> metadata);
     }
 
     /**
@@ -84,10 +85,10 @@ public interface DatastreamService {
      * Set the content for a datastream
      * @param identifier the datastream identifier
      * @param stream the content
-     * @param contentType the contentType
+     * @param metadata any user metadata
      */
-    default void setContent(IRI identifier, InputStream stream, String contentType) {
-        getResolver(identifier).ifPresent(resolver -> resolver.setContent(identifier, stream, contentType));
+    default void setContent(IRI identifier, InputStream stream, Map<String, String> metadata) {
+        getResolver(identifier).ifPresent(resolver -> resolver.setContent(identifier, stream, metadata));
     }
 
     /**
