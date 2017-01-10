@@ -15,6 +15,8 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import static java.util.Collections.emptyMap;
+
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -57,6 +59,15 @@ public interface DatastreamService {
         /**
          * Set the content of the datastream
          * @param identifier the identifier
+         * @param stream the stream
+         */
+        default void setContent(IRI identifier, InputStream stream) {
+            setContent(identifier, stream, emptyMap());
+        }
+
+        /**
+         * Set the content of the datastream
+         * @param identifier the identifier
          * @param stream the content
          * @param metadata any user metadata
          */
@@ -79,6 +90,15 @@ public interface DatastreamService {
      */
     default Boolean exists(IRI identifier) {
         return getResolver(identifier).map(resolver -> resolver.exists(identifier)).orElse(false);
+    }
+
+    /**
+     * Set the content for a datastream
+     * @param identifier the datastream identifier
+     * @param stream the content
+     */
+    default void setContent(IRI identifier, InputStream stream) {
+        setContent(identifier, stream, emptyMap());
     }
 
     /**
