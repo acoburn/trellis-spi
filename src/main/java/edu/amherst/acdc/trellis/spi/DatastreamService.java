@@ -67,14 +67,18 @@ public interface DatastreamService {
      * @param identifier an identifier used for locating the datastream
      * @return the content
      */
-    Optional<InputStream> getContent(IRI identifier);
+    default Optional<InputStream> getContent(IRI identifier) {
+        return getResolver(identifier).flatMap(resolver -> resolver.getContent(identifier));
+    }
 
     /**
      * Test whether a datastream exists at the given URI
      * @param identifier the datastream identifier
      * @return whether the datastream exists
      */
-    Boolean exists(IRI identifier);
+    default Boolean exists(IRI identifier) {
+        return getResolver(identifier).map(resolver -> resolver.exists(identifier)).orElse(false);
+    }
 
     /**
      * Set the content for a datastream
@@ -82,7 +86,9 @@ public interface DatastreamService {
      * @param stream the content
      * @param contentType the contentType
      */
-    void setContent(IRI identifier, InputStream stream, String contentType);
+    default void setContent(IRI identifier, InputStream stream, String contentType) {
+        getResolver(identifier).ifPresent(resolver -> resolver.setContent(identifier, stream, contentType));
+    }
 
     /**
      * Calculate the digest for a datastream
@@ -90,7 +96,9 @@ public interface DatastreamService {
      * @param algorithm the algorithm
      * @return the digest
      */
-    Optional<String> calculateDigest(IRI identifier, String algorithm);
+    default Optional<String> calculateDigest(IRI identifier, String algorithm) {
+        return getContent(identifier).flatMap(stream -> hexDigest(algorithm, stream));
+    }
 
     /**
      * Generate an identifier for a new datastream resource
@@ -109,4 +117,19 @@ public interface DatastreamService {
      * @return the new identifier for the datastream
      */
     IRI generateIdentifier(IRI identifier, Datastream.StoragePartition partition);
+
+    /**
+     * Get the resolver for the given identifier
+     * @param identifier the identifier
+     * @return a datastream resolver
+     */
+    Optional<Resolver> getResolver(IRI identifier);
+
+    /**
+     * Get the digest for an input stream
+     * @param algorithm the algorithm to use
+     * @param stream the input stream
+     * @return the digest
+     */
+    Optional<String> hexDigest(String algorithm, InputStream stream);
 }
