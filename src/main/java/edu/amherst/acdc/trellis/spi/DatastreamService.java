@@ -95,6 +95,10 @@ public interface DatastreamService {
      * @param identifier the identifier
      * @param algorithm the algorithm
      * @return the digest
+     *
+     * <p>Note: as per RFC 3230, the digest value is calculated over the entire resource,
+     * not just the HTTP payload.</p>
+     *
      */
     default Optional<String> calculateDigest(IRI identifier, String algorithm) {
         return getContent(identifier).flatMap(stream -> hexDigest(algorithm, stream));
