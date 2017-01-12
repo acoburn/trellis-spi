@@ -17,7 +17,6 @@ package edu.amherst.acdc.trellis.spi;
 
 import java.time.Duration;
 import java.time.Instant;
-import java.util.Collection;
 import java.util.Optional;
 
 import org.apache.commons.rdf.api.IRI;
@@ -42,16 +41,10 @@ public interface Session {
     IRI getIdentifier();
 
     /**
-     * Get a user identifier
-     * @return an identifier for a User
+     * Get an agent identifier
+     * @return an identifier for a user/agent
      */
-    IRI getUser();
-
-    /**
-     * Get additional (e.g. group) identifiers for this session
-     * @return any additional user/group identifiers
-     */
-    Collection<IRI> getGroups();
+    IRI getAgent();
 
     /**
      * Get the user that delegated access, if one exists
