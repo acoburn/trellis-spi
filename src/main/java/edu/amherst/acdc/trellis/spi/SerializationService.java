@@ -33,6 +33,18 @@ import org.apache.commons.rdf.api.Triple;
 public interface SerializationService {
 
     /**
+     * A method for setting a namespace service
+     * @param service the service
+     */
+    void setNamespaceService(NamespaceService service);
+
+    /**
+     * A method for unbinding a namespace service
+     * @param service the service
+     */
+    void unsetNamespaceService(NamespaceService service);
+
+    /**
      * Serialize the triple stream as RDF
      * @param triples the stream of triples
      * @param output the output stream
