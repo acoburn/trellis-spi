@@ -84,13 +84,13 @@ public interface DatastreamService {
      * Bind a resolver to this service
      * @param resolver the resolver
      */
-    void addResolver(Resolver resolver);
+    void bind(Resolver resolver);
 
     /**
      * Unbind a resolver
      * @param resolver the resolver
      */
-    void removeResolver(Resolver resolver);
+    void unbind(Resolver resolver);
 
     /**
      * Get the content of the datastream
