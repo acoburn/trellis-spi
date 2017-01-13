@@ -75,6 +75,24 @@ public interface DatastreamService {
     }
 
     /**
+     * Set a list of resolvers
+     * @param resolvers the resolvers
+     */
+    void setResolvers(List<Resolver> resolvers);
+
+    /**
+     * Bind a resolver to this service
+     * @param resolver the resolver
+     */
+    void addResolver(Resolver resolver);
+
+    /**
+     * Unbind a resolver
+     * @param resolver the resolver
+     */
+    void removeResolver(Resolver resolver);
+
+    /**
      * Get the content of the datastream
      * @param identifier an identifier used for locating the datastream
      * @return the content

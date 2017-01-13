@@ -33,6 +33,30 @@ import org.apache.commons.rdf.api.IRI;
 public interface AccessControlService {
 
     /**
+     * Add a resource service
+     * @param service the service
+     */
+    void setResourceService(ResourceService service);
+
+    /**
+     * Remove a resource service
+     * @param service the service
+     */
+    void unsetResourceService(ResourceService service);
+
+    /**
+     * Add an agent service
+     * @param service the service
+     */
+    void setAgentService(AgentService service);
+
+    /**
+     * Remove an agent service
+     * @param service the service
+     */
+    void unsetAgentService(AgentService service);
+
+    /**
      * Test whether the resource is readable
      * @param session the user session
      * @param identifier the resource identifier
