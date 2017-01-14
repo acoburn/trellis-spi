@@ -15,7 +15,6 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -63,21 +62,4 @@ public interface Session {
      * @return the expiration date, if one exists
      */
     Optional<Instant> getExpiry();
-
-    /**
-     * Update the expiry by the provided amount
-     * @param amount the amount of time to add
-     * @return the new expiration date
-     */
-    Instant updateExpiry(Duration amount);
-
-    /**
-     * Commit any changes associated with this session to durable persistence
-     */
-    void commit();
-
-    /**
-     * Expire the session
-     */
-    void expire();
 }

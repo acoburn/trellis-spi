@@ -15,6 +15,7 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import java.time.Duration;
 import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Resource;
@@ -31,36 +32,19 @@ public interface ResourceService {
 
     /**
      * Find a resource at the given location
+     * @param session the session
      * @param identifier the resource identifier
      * @return the resource
      */
-    Optional<Resource> find(IRI identifier);
-
-    /**
-     * Find a resource at the given location
-     * @param identifier the resource identifier
-     * @param type the resource type
-     * @param <T> the type of resource to return
-     * @return the resource
-     */
-    <T extends Resource> Optional<T> find(IRI identifier, Class<T> type);
+    Optional<Resource> find(Session session, IRI identifier);
 
     /**
      * Test whether a resource exists at the identifier
+     * @param session the session
      * @param identifier the resource identifier
      * @return whether the identified resource exists
      */
-    Boolean exists(IRI identifier);
-
-    /**
-     * Create a new resource
-     * @param session the session
-     * @param identifier the Identifier for the new resource
-     * @param type the type of the resource
-     * @param <T> the resource type
-     * @return the new resource
-     */
-    <T extends Resource> T create(Session session, IRI identifier, Class<T> type);
+    Boolean exists(Session session, IRI identifier);
 
     /**
      * Create a new resource
@@ -85,4 +69,37 @@ public interface ResourceService {
      * @param identifier the resource identifier
      */
     void delete(Session session, IRI identifier);
+
+    /**
+     * Commit changes to durable storage
+     * @param session the session
+     */
+    void commit(Session session);
+
+    /**
+     * Expire a session and drop any uncommitted changes
+     * @param session the session
+     */
+    void expire(Session session);
+
+    /**
+     * Begin a new session
+     * @return the session
+     */
+    Session begin();
+
+    /**
+     * Resume an existing session
+     * @param identifier the identifier
+     * @return the session
+     */
+    Session resume(IRI identifier);
+
+    /**
+     * Extend a session
+     * @param session the session
+     * @param duration the amount of time by which to extend the session
+     * @return the new session
+     */
+    Session extend(Session session, Duration duration);
 }
