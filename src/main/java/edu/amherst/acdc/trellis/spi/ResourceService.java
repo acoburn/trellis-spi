@@ -91,9 +91,9 @@ public interface ResourceService {
     /**
      * Resume an existing session
      * @param identifier the identifier
-     * @return the session
+     * @return the session, if it exists
      */
-    Session resume(IRI identifier);
+    Optional<Session> resume(IRI identifier);
 
     /**
      * Extend a session
@@ -101,5 +101,5 @@ public interface ResourceService {
      * @param duration the amount of time by which to extend the session
      * @return the new session
      */
-    Session extend(Session session, Duration duration);
+    Optional<Session> extend(Session session, Duration duration);
 }
