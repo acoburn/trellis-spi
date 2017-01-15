@@ -31,6 +31,26 @@ import org.apache.commons.rdf.api.IRI;
 public interface ResourceService {
 
     /**
+     * Set the event service
+     * @param service the event service
+     */
+    default void setEventService(EventService service) {
+        bind(service);
+    }
+
+    /**
+     * Bind the event service
+     * @param service the event service
+     */
+    void bind(EventService service);
+
+    /**
+     * Unbind the event service
+     * @param service the event service
+     */
+    void unbind(EventService service);
+
+    /**
      * Find a resource at the given location
      * @param session the session
      * @param identifier the resource identifier
