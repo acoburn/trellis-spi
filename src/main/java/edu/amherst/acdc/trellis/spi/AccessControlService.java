@@ -106,22 +106,25 @@ public interface AccessControlService {
 
     /**
      * Find the effective ACL for the given resource identifier
+     * @param session the user session
      * @param identifier the resource identifier
      * @return the ACL identifier
      */
-    Optional<IRI> findAclFor(IRI identifier);
+    Optional<IRI> findAclFor(Session session, IRI identifier);
 
     /**
      * Find the first ancestor resource with an access control declaration
+     * @param session the user session
      * @param identifier the starting resource
      * @return the resource identifier
      */
-    Optional<Resource> findAncestorWithAccessControl(IRI identifier);
+    Optional<Resource> findAncestorWithAccessControl(Session session, IRI identifier);
 
     /**
      * Fetch the authorizations for the provided resource
+     * @param session the user session
      * @param identifier the resource containing acl:Authorization statements
      * @return a stream of Authorizations
      */
-    Stream<Authorization> getAuthorizations(IRI identifier);
+    Stream<Authorization> getAuthorizations(Session session, IRI identifier);
 }
