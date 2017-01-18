@@ -48,6 +48,16 @@ public class Authorization {
     private final IRI identifier;
     private final Map<IRI, Set<IRI>> dataMap = new HashMap<>();
 
+    /**
+     * Create an Authorization object from a graph and an
+     * identifier
+     * @param identifier the identifier
+     * @param graph the graph
+     * @return the Authorization object
+     */
+    public static Authorization of(final IRI identifier, final Graph graph) {
+        return new Authorization(identifier, graph);
+    }
 
     /**
      * Create an Authorization object from an RDF graph
