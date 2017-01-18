@@ -20,11 +20,16 @@ import static java.util.Collections.singleton;
 import static java.util.Optional.of;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
+import static edu.amherst.acdc.trellis.spi.ActivityStreamSerializer.serialize;
 import static edu.amherst.acdc.trellis.vocabulary.AS.Create;
 import static edu.amherst.acdc.trellis.vocabulary.LDP.Container;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+import edu.amherst.acdc.trellis.vocabulary.AS;
 import org.apache.commons.rdf.api.RDF;
 import org.apache.commons.rdf.simple.SimpleRDF;
 import org.junit.Before;
@@ -44,11 +49,8 @@ public class ActivityStreamSerializerTest {
     @Mock
     private Event mockEvent;
 
-    private ActivityStreamSerializer serializer;
-
     @Before
     public void setUp() {
-        serializer = new ActivityStreamSerializer(mockEvent);
         when(mockEvent.getIdentifier()).thenReturn(rdf.createIRI("info:event/12345"));
         when(mockEvent.getAgents()).thenReturn(singleton(rdf.createIRI("info:user/test")));
         when(mockEvent.getTarget()).thenReturn(of(rdf.createIRI("info:trellis/resource")));
@@ -60,8 +62,37 @@ public class ActivityStreamSerializerTest {
 
     @Test
     public void testSerialization() {
-        final Optional<String> json = serializer.serialize();
+        final Optional<String> json = serialize(mockEvent);
         assertTrue(json.isPresent());
         assertTrue(json.get().contains("\"inbox\":\"info:ldn/inbox\""));
+    }
+
+    @Test
+    public void testSerializationStructure() throws Exception {
+        final Optional<String> json = serialize(mockEvent);
+        assertTrue(json.isPresent());
+
+        final ObjectMapper mapper = new ObjectMapper();
+        @SuppressWarnings("unchecked")
+        final Map<String, Object> map = mapper.readValue(json.get(), Map.class);
+        assertTrue(map.containsKey("@context"));
+        assertTrue(map.containsKey("id"));
+        assertTrue(map.containsKey("type"));
+        assertTrue(map.containsKey("inbox"));
+        assertTrue(map.containsKey("actor"));
+        assertTrue(map.containsKey("date"));
+        assertTrue(map.containsKey("object"));
+
+        final List types = (List) map.get("type");
+        assertTrue(types.contains(Create.getIRIString()));
+
+        final List context = (List) map.get("@context");
+        assertTrue(context.contains(AS.uri));
+
+        final List actor = (List) map.get("actor");
+        assertTrue(actor.contains("info:user/test"));
+
+        assertTrue(map.get("id").equals("info:event/12345"));
+        assertTrue(map.get("inbox").equals("info:ldn/inbox"));
     }
 }

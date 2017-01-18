@@ -40,7 +40,6 @@ public interface EventService {
      */
     static Optional<String> serialize(final Event event) {
         requireNonNull(event, "The event may not be null!");
-        final ActivityStreamSerializer serializer = new ActivityStreamSerializer(event);
-        return serializer.serialize();
+        return ActivityStreamSerializer.serialize(event);
     }
 }

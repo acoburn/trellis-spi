@@ -33,27 +33,24 @@ class ActivityStreamSerializer {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
-    private final Event event;
-
-    /**
-     * Create a new EventSerializer
-     * @param event the event
-     */
-    ActivityStreamSerializer(final Event event) {
+    static {
         MAPPER.configure(WRITE_DATES_AS_TIMESTAMPS, false);
         MAPPER.registerModule(new JavaTimeModule());
-        this.event = event;
     }
 
     /**
      * Serialize the Event
      * @return the Event as a JSON string
      */
-    Optional<String> serialize() {
+    static Optional<String> serialize(final Event event) {
         try {
             return of(MAPPER.writeValueAsString(from(event)));
         } catch (final JsonProcessingException ex) {
             return empty();
         }
+    }
+
+    private ActivityStreamSerializer() {
+        // prevent instantiation
     }
 }
