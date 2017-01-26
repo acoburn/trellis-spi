@@ -57,17 +57,9 @@ public interface SerializationService {
      * @param triples the stream of triples
      * @param output the output stream
      * @param syntax the output format
+     * @param profiles additional profile information used for output
      */
-    void write(Stream<Triple> triples, OutputStream output, RDFSyntax syntax);
-
-    /**
-     * Serialize the triple stream as RDF
-     * @param triples the stream of triples
-     * @param output the output stream
-     * @param syntax the output format
-     * @param profile additional profile information used for output
-     */
-    void write(Stream<Triple> triples, OutputStream output, RDFSyntax syntax, IRI profile);
+    void write(Stream<Triple> triples, OutputStream output, RDFSyntax syntax, IRI... profiles);
 
     /**
      * Read an input stream into a graph
