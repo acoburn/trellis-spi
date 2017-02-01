@@ -15,8 +15,16 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
-import java.util.Optional;
+import static java.util.Collections.unmodifiableMap;
+import static java.util.stream.Stream.concat;
+import static java.util.stream.Stream.of;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Optional;
+import java.util.stream.Stream;
+
+import edu.amherst.acdc.trellis.vocabulary.LDP;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 
@@ -36,4 +44,23 @@ public interface ConstraintService {
      * @return any constraint on the graph
      */
     Optional<IRI> constrainedBy(IRI interactionModel, Graph graph, IRI context);
+
+    static Map<IRI, IRI> subClassOf = unmodifiableMap(new HashMap<IRI, IRI>() { {
+        put(LDP.NonRDFSource, LDP.Resource);
+        put(LDP.RDFSource, LDP.Resource);
+        put(LDP.Container, LDP.RDFSource);
+        put(LDP.BasicContainer, LDP.Container);
+        put(LDP.DirectContainer, LDP.Container);
+        put(LDP.IndirectContainer, LDP.Container);
+    }});
+
+    /**
+     * Get all of the LDP resource (super) types for the given LDP interaction model
+     * @param interactionModel the interaction model
+     * @return a stream of types
+     */
+    static Stream<IRI> ldpResourceTypes(final IRI interactionModel) {
+        return of(interactionModel).filter(type -> subClassOf.containsKey(type) || LDP.Resource.equals(type))
+            .flatMap(type -> concat(ldpResourceTypes(subClassOf.get(type)), of(type)));
+    }
 }
