@@ -19,7 +19,6 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.stream.Stream;
 
-import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDFSyntax;
 import org.apache.commons.rdf.api.Triple;
@@ -62,10 +61,11 @@ public interface SerializationService {
     void write(Stream<Triple> triples, OutputStream output, RDFSyntax syntax, IRI... profiles);
 
     /**
-     * Read an input stream into a graph
-     * @param graph the graph
+     * Read an input stream into a stream of triples
      * @param input the input stream
+     * @param context the RDF context
      * @param syntax the RDF syntax
+     * @return a stream of triples
      */
-    void read(Graph graph, InputStream input, RDFSyntax syntax);
+    Stream<Triple> read(InputStream input, String context, RDFSyntax syntax);
 }
