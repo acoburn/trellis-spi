@@ -46,7 +46,15 @@ import org.apache.commons.rdf.api.IRI;
 public class Authorization {
 
     private final IRI identifier;
-    private final Map<IRI, Set<IRI>> dataMap = new HashMap<>();
+    private final Map<IRI, Set<IRI>> dataMap = new HashMap<IRI, Set<IRI>>() { {
+        put(ACL.agent, new HashSet<>());
+        put(ACL.agentClass, new HashSet<>());
+        put(ACL.agentGroup, new HashSet<>());
+        put(ACL.mode, new HashSet<>());
+        put(ACL.accessTo, new HashSet<>());
+        put(ACL.accessToClass, new HashSet<>());
+        put(ACL.defaultForNew, new HashSet<>());
+    }};
 
     /**
      * Create an Authorization object from a graph and an
@@ -69,14 +77,6 @@ public class Authorization {
         requireNonNull(graph, "The input graph may not be null!");
 
         this.identifier = identifier;
-        dataMap.put(ACL.agent, new HashSet<>());
-        dataMap.put(ACL.agentClass, new HashSet<>());
-        dataMap.put(ACL.agentGroup, new HashSet<>());
-        dataMap.put(ACL.mode, new HashSet<>());
-        dataMap.put(ACL.accessTo, new HashSet<>());
-        dataMap.put(ACL.accessToClass, new HashSet<>());
-        dataMap.put(ACL.defaultForNew, new HashSet<>());
-
         graph.stream(identifier, null, null).forEach(triple -> {
             if (dataMap.containsKey(triple.getPredicate()) && triple.getObject() instanceof IRI) {
                 dataMap.get(triple.getPredicate()).add((IRI) triple.getObject());
