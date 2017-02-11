@@ -15,8 +15,6 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
-import edu.amherst.acdc.trellis.api.RuntimeRepositoryException;
-
 /**
  * A class representing an invalid RDF exception
  *
