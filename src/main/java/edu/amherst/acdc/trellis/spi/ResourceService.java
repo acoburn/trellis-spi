@@ -16,6 +16,7 @@
 package edu.amherst.acdc.trellis.spi;
 
 import java.time.Duration;
+import java.time.Instant;
 import java.util.Optional;
 
 import edu.amherst.acdc.trellis.api.Resource;
@@ -59,12 +60,30 @@ public interface ResourceService {
     Optional<Resource> find(Session session, IRI identifier);
 
     /**
+     * Find a resource at the given location and time
+     * @param session the session
+     * @param identifier the resource identifier
+     * @param time the time
+     * @return the resource
+     */
+    Optional<Resource> find(Session session, IRI identifier, Instant time);
+
+    /**
      * Test whether a resource exists at the identifier
      * @param session the session
      * @param identifier the resource identifier
      * @return whether the identified resource exists
      */
     Boolean exists(Session session, IRI identifier);
+
+    /**
+     * Test whether a resource exists at the identifier at a given time
+     * @param session the session
+     * @param identifier the resource identifier
+     * @param time the time
+     * @return whether the identified resource exists
+     */
+    Boolean exists(Session session, IRI identifier, Instant time);
 
     /**
      * Create a new resource
