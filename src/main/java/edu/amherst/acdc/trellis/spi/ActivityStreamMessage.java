@@ -32,10 +32,8 @@ import org.apache.commons.rdf.api.IRI;
 class ActivityStreamMessage {
 
     static class EventResource {
-        @JsonProperty("id")
         public String id;
 
-        @JsonProperty("type")
         public List<String> type;
 
         public EventResource(final String id, final List<String> type) {
@@ -44,19 +42,14 @@ class ActivityStreamMessage {
         }
     }
 
-    @JsonProperty("id")
     public String id;
 
-    @JsonProperty("type")
     public List<String> type;
 
-    @JsonProperty("inbox")
     public String inbox;
 
-    @JsonProperty("actor")
     public List<String> actor;
 
-    @JsonProperty("object")
     public EventResource object;
 
     @JsonProperty("@context")
@@ -76,11 +69,9 @@ class ActivityStreamMessage {
         msg.actor = event.getAgents().stream().map(IRI::getIRIString).collect(toList());
 
         event.getInbox().map(IRI::getIRIString).ifPresent(inbox -> msg.inbox = inbox);
-
-        event.getTarget().map(IRI::getIRIString).ifPresent(target -> {
+        event.getTarget().map(IRI::getIRIString).ifPresent(target ->
             msg.object = new EventResource(target,
-                    event.getTargetTypes().stream().map(IRI::getIRIString).collect(toList()));
-        });
+                    event.getTargetTypes().stream().map(IRI::getIRIString).collect(toList())));
 
         return msg;
     }
