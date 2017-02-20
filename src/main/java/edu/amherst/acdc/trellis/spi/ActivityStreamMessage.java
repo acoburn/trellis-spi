@@ -17,14 +17,9 @@ package edu.amherst.acdc.trellis.spi;
 
 import static java.util.stream.Collectors.toList;
 
-import java.time.Instant;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import edu.amherst.acdc.trellis.vocabulary.AS;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -35,14 +30,6 @@ import org.apache.commons.rdf.api.IRI;
  * @author acoburn
  */
 class ActivityStreamMessage {
-
-    static class ContextDate {
-        @JsonProperty("@id")
-        public final String id = "http://purl.org/dc/terms/date";
-
-        @JsonProperty("@type")
-        public final String type = "xsd:dateTime";
-    }
 
     static class EventResource {
         @JsonProperty("id")
@@ -69,14 +56,11 @@ class ActivityStreamMessage {
     @JsonProperty("actor")
     public List<String> actor;
 
-    @JsonProperty("date")
-    public Instant date;
-
     @JsonProperty("object")
     public EventResource object;
 
     @JsonProperty("@context")
-    public List<Object> context;
+    public String context = "https://www.w3.org/ns/activitystreams";
 
     /**
      * Populate a ActivityStreamMessage from an Event
@@ -87,22 +71,11 @@ class ActivityStreamMessage {
 
         final ActivityStreamMessage msg = new ActivityStreamMessage();
 
-        final List<Object> context = new ArrayList<>();
-        final Map<String, Object> ctxAdditions = new HashMap<>();
-        ctxAdditions.put("date", new ContextDate());
-
-        context.add(AS.uri);
-        context.add(ctxAdditions);
-
-        msg.context = context;
         msg.id = event.getIdentifier().getIRIString();
         msg.type = event.getTypes().stream().map(IRI::getIRIString).collect(toList());
         msg.actor = event.getAgents().stream().map(IRI::getIRIString).collect(toList());
-        msg.date = event.getCreated();
 
-        event.getInbox().map(IRI::getIRIString).ifPresent(inbox -> {
-            msg.inbox = inbox;
-        });
+        event.getInbox().map(IRI::getIRIString).ifPresent(inbox -> msg.inbox = inbox);
 
         event.getTarget().map(IRI::getIRIString).ifPresent(target -> {
             msg.object = new EventResource(target,
