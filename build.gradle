@@ -233,8 +233,11 @@ checkstyle {
 
 sonarqube {
     properties {
-        property "sonar.projectName", "Amherst College Trellis Repository SPI"
+        property "sonar.projectName", "Trellis Repository SPI"
         property "sonar.projectKey", "edu.amherst.acdc:trellis-spi"
+        property "sonar.links.homepage", "https://github.com/trellis-ldp/trellis"
+        property "sonar.links.issue", "https://github.com/trellis-ldp/trellis-spi/issues"
+        property "sonar.links.scm_dev", "scm:git:git@github.com:trellis-ldp/trellis-spi.git"
     }
 }
 
