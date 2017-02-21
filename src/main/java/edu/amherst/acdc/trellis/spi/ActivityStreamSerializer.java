@@ -15,21 +15,21 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 import static edu.amherst.acdc.trellis.spi.ActivityStreamMessage.from;
-
-import java.util.Optional;
+import static java.util.Optional.empty;
+import static java.util.Optional.of;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
 
+import java.util.Optional;
+
 /**
  * @author acoburn
  */
-class ActivityStreamSerializer {
+final class ActivityStreamSerializer {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();
 

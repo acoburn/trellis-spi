@@ -15,11 +15,12 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import edu.amherst.acdc.trellis.api.Resource;
+
 import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
 
-import edu.amherst.acdc.trellis.api.Resource;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 

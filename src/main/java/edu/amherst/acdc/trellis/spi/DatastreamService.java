@@ -17,12 +17,13 @@ package edu.amherst.acdc.trellis.spi;
 
 import static java.util.Collections.emptyMap;
 
+import edu.amherst.acdc.trellis.api.Datastream;
+
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-import edu.amherst.acdc.trellis.api.Datastream;
 import org.apache.commons.rdf.api.IRI;
 
 /**

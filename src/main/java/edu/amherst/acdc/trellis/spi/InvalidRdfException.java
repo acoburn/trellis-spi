@@ -28,6 +28,7 @@ public class InvalidRdfException extends RuntimeRepositoryException {
      * Create a new InvalidRdfException
      */
     public InvalidRdfException() {
+        super();
     }
 
     /**

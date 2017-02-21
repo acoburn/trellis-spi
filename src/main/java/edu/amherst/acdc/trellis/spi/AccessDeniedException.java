@@ -28,6 +28,7 @@ public class AccessDeniedException extends RuntimeRepositoryException {
      * Create a new AccessDeniedException
      */
     public AccessDeniedException() {
+        super();
     }
 
     /**

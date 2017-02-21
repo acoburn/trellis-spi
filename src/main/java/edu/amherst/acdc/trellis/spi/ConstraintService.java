@@ -19,12 +19,13 @@ import static java.util.Collections.unmodifiableMap;
 import static java.util.stream.Stream.concat;
 import static java.util.stream.Stream.of;
 
+import edu.amherst.acdc.trellis.vocabulary.LDP;
+
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
-import edu.amherst.acdc.trellis.vocabulary.LDP;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 

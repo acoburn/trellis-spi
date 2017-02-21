@@ -17,9 +17,10 @@ package edu.amherst.acdc.trellis.spi;
 
 import static java.util.stream.Collectors.toList;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 import java.util.List;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -31,27 +32,59 @@ import org.apache.commons.rdf.api.IRI;
  */
 class ActivityStreamMessage {
 
+    /**
+     * The target resource of a message
+     */
     static class EventResource {
+        /**
+         * The resource identifier
+         */
         public String id;
 
+        /**
+         * The resource types
+         */
         public List<String> type;
 
+        /**
+         * Create a new event resource target
+         * @param id the identifier
+         * @param type the types
+         */
         public EventResource(final String id, final List<String> type) {
             this.id = id;
             this.type = type;
         }
     }
 
+    /**
+     * The event identifier
+     */
     public String id;
 
+    /**
+     * The event types
+     */
     public List<String> type;
 
+    /**
+     * The inbox assocated with the resource
+     */
     public String inbox;
 
+    /**
+     * The actors associated with this event
+     */
     public List<String> actor;
 
+    /**
+     * The target resource
+     */
     public EventResource object;
 
+    /**
+     * The JSON-LD context
+     */
     @JsonProperty("@context")
     public String context = "https://www.w3.org/ns/activitystreams";
 

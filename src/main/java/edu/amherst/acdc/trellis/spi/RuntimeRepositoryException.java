@@ -28,6 +28,7 @@ public class RuntimeRepositoryException extends RuntimeException {
      * Create a new RuntimeRepositoryException
      */
     public RuntimeRepositoryException() {
+        super();
     }
 
     /**

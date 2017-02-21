@@ -28,6 +28,7 @@ public class ResourceNotFoundException extends RuntimeRepositoryException {
      * Create a new ResourceNotFoundException
      */
     public ResourceNotFoundException() {
+        super();
     }
 
     /**

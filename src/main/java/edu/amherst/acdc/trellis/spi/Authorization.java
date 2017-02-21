@@ -18,12 +18,12 @@ package edu.amherst.acdc.trellis.spi;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
 
+import edu.amherst.acdc.trellis.vocabulary.ACL;
+
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
-
-import edu.amherst.acdc.trellis.vocabulary.ACL;
 
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
@@ -57,13 +57,12 @@ public class Authorization {
     }};
 
     /**
-     * Create an Authorization object from a graph and an
-     * identifier
+     * Create an Authorization object from a graph and an identifier
      * @param identifier the identifier
      * @param graph the graph
      * @return the Authorization object
      */
-    public static Authorization of(final IRI identifier, final Graph graph) {
+    public static Authorization from(final IRI identifier, final Graph graph) {
         return new Authorization(identifier, graph);
     }
 

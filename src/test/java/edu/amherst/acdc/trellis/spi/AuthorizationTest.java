@@ -74,7 +74,7 @@ public class AuthorizationTest {
 
     @Test
     public void testGraph() {
-        final Authorization auth = Authorization.of(subject, graph);
+        final Authorization auth = Authorization.from(subject, graph);
 
         assertEquals(subject, auth.getIdentifier());
 

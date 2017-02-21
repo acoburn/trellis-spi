@@ -28,6 +28,7 @@ public class ConstraintViolationException extends InvalidRdfException {
      * Create a new ConstraintViolationException
      */
     public ConstraintViolationException() {
+        super();
     }
 
     /**

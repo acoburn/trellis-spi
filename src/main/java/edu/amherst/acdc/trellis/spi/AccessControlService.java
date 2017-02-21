@@ -15,12 +15,13 @@
  */
 package edu.amherst.acdc.trellis.spi;
 
+import edu.amherst.acdc.trellis.api.Resource;
+import edu.amherst.acdc.trellis.vocabulary.ACL;
+
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
-import edu.amherst.acdc.trellis.api.Resource;
-import edu.amherst.acdc.trellis.vocabulary.ACL;
 import org.apache.commons.rdf.api.IRI;
 
 /**
