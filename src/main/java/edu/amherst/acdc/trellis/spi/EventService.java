@@ -25,7 +25,7 @@ import java.util.Optional;
  *
  * @author acoburn
  */
-public interface EventService {
+public interface EventService extends AutoCloseable {
 
     /**
      * Emit an event to the event service
