@@ -32,7 +32,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author acoburn
  */
-public interface DatastreamService {
+public interface DatastreamService extends AutoCloseable {
 
     /**
      * A datastream resolver, used by the DatastreamService

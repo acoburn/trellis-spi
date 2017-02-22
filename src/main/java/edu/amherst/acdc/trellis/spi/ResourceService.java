@@ -30,7 +30,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author acoburn
  */
-public interface ResourceService {
+public interface ResourceService extends AutoCloseable {
 
     /**
      * Set the event service
