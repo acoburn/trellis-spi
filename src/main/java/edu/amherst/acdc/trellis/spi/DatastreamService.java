@@ -37,7 +37,7 @@ public interface DatastreamService extends AutoCloseable {
     /**
      * A datastream resolver, used by the DatastreamService
      */
-    interface Resolver {
+    interface Resolver extends AutoCloseable {
         /**
          * @return the uri schemes supported by this resolver
          */
