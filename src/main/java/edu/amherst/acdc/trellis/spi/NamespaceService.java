@@ -24,7 +24,7 @@ import java.util.Optional;
  *
  * @author acoburn
  */
-public interface NamespaceService extends AutoCloseable {
+public interface NamespaceService {
 
     /**
      * Fetch the entire namespace mapping

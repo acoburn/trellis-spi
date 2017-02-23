@@ -24,7 +24,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author acoburn
  */
-public interface IdGeneratorService extends AutoCloseable {
+public interface IdGeneratorService {
 
     /**
      * Get a Supplier that generates IRIs with the provided prefix
