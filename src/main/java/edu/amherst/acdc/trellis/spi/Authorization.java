@@ -76,11 +76,9 @@ public class Authorization {
         requireNonNull(graph, "The input graph may not be null!");
 
         this.identifier = identifier;
-        graph.stream(identifier, null, null).forEach(triple -> {
-            if (dataMap.containsKey(triple.getPredicate()) && triple.getObject() instanceof IRI) {
-                dataMap.get(triple.getPredicate()).add((IRI) triple.getObject());
-            }
-        });
+        graph.stream(identifier, null, null).filter(triple -> dataMap.containsKey(triple.getPredicate()))
+            .filter(triple -> triple.getObject() instanceof IRI)
+            .forEach(triple -> dataMap.get(triple.getPredicate()).add((IRI) triple.getObject()));
     }
 
     /**
