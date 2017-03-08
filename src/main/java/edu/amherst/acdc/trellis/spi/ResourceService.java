@@ -75,7 +75,9 @@ public interface ResourceService {
      * @param identifier the resource identifier
      * @return whether the identified resource exists
      */
-    Boolean exists(Session session, IRI identifier);
+    default Boolean exists(Session session, IRI identifier) {
+        return find(session, identifier).isPresent();
+    }
 
     /**
      * Test whether a resource exists at the identifier at a given time
@@ -84,7 +86,9 @@ public interface ResourceService {
      * @param time the time
      * @return whether the identified resource exists
      */
-    Boolean exists(Session session, IRI identifier, Instant time);
+    default Boolean exists(Session session, IRI identifier, Instant time) {
+        return find(session, identifier, time).isPresent();
+    }
 
     /**
      * Create a new resource
