@@ -94,18 +94,20 @@ public interface ResourceService {
      * Create a new resource
      * @param session the session
      * @param identifier the Identifier for the new resource
-     * @param type the type of the resource
+     * @param type the interaction model
+     * @param graph the graph
      * @return the new resource
      */
-    Resource create(Session session, IRI identifier, IRI type);
+    Resource create(Session session, IRI identifier, IRI type, Graph graph);
 
     /**
      * Update a resource
      * @param session the session
      * @param identifier the resource identifier
+     * @param type the interaction model
      * @param graph the new graph
      */
-    void update(Session session, IRI identifier, Graph graph);
+    void update(Session session, IRI identifier, IRI type, Graph graph);
 
     /**
      * Delete a resource
