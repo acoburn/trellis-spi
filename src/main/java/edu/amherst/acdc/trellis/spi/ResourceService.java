@@ -53,21 +53,21 @@ public interface ResourceService {
     void unbind(EventService service);
 
     /**
-     * Find a resource at the given location
+     * Get a resource from the given location
      * @param session the session
      * @param identifier the resource identifier
      * @return the resource
      */
-    Optional<Resource> find(Session session, IRI identifier);
+    Optional<Resource> get(Session session, IRI identifier);
 
     /**
-     * Find a resource at the given location and time
+     * Get a resource from the given location and time
      * @param session the session
      * @param identifier the resource identifier
      * @param time the time
      * @return the resource
      */
-    Optional<Resource> find(Session session, IRI identifier, Instant time);
+    Optional<Resource> get(Session session, IRI identifier, Instant time);
 
     /**
      * Test whether a resource exists at the identifier
@@ -76,7 +76,7 @@ public interface ResourceService {
      * @return whether the identified resource exists
      */
     default Boolean exists(Session session, IRI identifier) {
-        return find(session, identifier).isPresent();
+        return get(session, identifier).isPresent();
     }
 
     /**
@@ -87,27 +87,18 @@ public interface ResourceService {
      * @return whether the identified resource exists
      */
     default Boolean exists(Session session, IRI identifier, Instant time) {
-        return find(session, identifier, time).isPresent();
+        return get(session, identifier, time).isPresent();
     }
 
     /**
-     * Create a new resource
+     * Put a resource into the repository
      * @param session the session
      * @param identifier the Identifier for the new resource
      * @param type the interaction model
      * @param graph the graph
-     * @return the new resource
+     * @return whether the resource was added
      */
-    Resource create(Session session, IRI identifier, IRI type, Graph graph);
-
-    /**
-     * Update a resource
-     * @param session the session
-     * @param identifier the resource identifier
-     * @param type the interaction model
-     * @param graph the new graph
-     */
-    void update(Session session, IRI identifier, IRI type, Graph graph);
+    Boolean put(Session session, IRI identifier, IRI type, Graph graph);
 
     /**
      * Delete a resource
