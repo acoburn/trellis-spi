@@ -250,6 +250,7 @@ task docs(type: Javadoc) {
         links "http://docs.oracle.com/javase/8/docs/api/"
         links "https://commons.apache.org/proper/commons-rdf/apidocs/"
         // TODO -- add link to trellis-api, when it becomes available
+        // links "https://trellis-ldp.github.io/trellis-api/0.1.0/"
     }
 }
 
