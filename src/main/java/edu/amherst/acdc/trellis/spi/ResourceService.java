@@ -104,8 +104,9 @@ public interface ResourceService {
      * Delete a resource
      * @param session the session
      * @param identifier the resource identifier
+     * @return whether the resource was deleted
      */
-    void delete(Session session, IRI identifier);
+    Boolean delete(Session session, IRI identifier);
 
     /**
      * Commit changes to durable storage
