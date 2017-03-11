@@ -21,7 +21,7 @@ import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
 
-import org.apache.commons.rdf.api.Graph;
+import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -94,11 +94,10 @@ public interface ResourceService {
      * Put a resource into the repository
      * @param session the session
      * @param identifier the Identifier for the new resource
-     * @param type the interaction model
-     * @param graph the graph
+     * @param dataset the dataset
      * @return whether the resource was added
      */
-    Boolean put(Session session, IRI identifier, IRI type, Graph graph);
+    Boolean put(Session session, IRI identifier, Dataset dataset);
 
     /**
      * Delete a resource
