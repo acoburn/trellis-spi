@@ -53,7 +53,7 @@ public class ActivityStreamSerializerTest {
     public void setUp() {
         when(mockEvent.getIdentifier()).thenReturn(rdf.createIRI("info:event/12345"));
         when(mockEvent.getAgents()).thenReturn(singleton(rdf.createIRI("info:user/test")));
-        when(mockEvent.getTarget()).thenReturn(of(rdf.createIRI("info:trellis/resource")));
+        when(mockEvent.getTarget()).thenReturn(of(rdf.createIRI("info:trellisrepo/resource")));
         when(mockEvent.getTypes()).thenReturn(singleton(Create));
         when(mockEvent.getTargetTypes()).thenReturn(singleton(Container));
         when(mockEvent.getCreated()).thenReturn(now());
