@@ -17,8 +17,6 @@ package edu.amherst.acdc.trellis.spi;
 
 import static java.util.Collections.emptyMap;
 
-import edu.amherst.acdc.trellis.api.Datastream;
-
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
@@ -143,24 +141,6 @@ public interface DatastreamService {
     default Optional<String> calculateDigest(IRI identifier, String algorithm) {
         return getContent(identifier).flatMap(stream -> hexDigest(algorithm, stream));
     }
-
-    /**
-     * Generate an identifier for a new datastream resource
-     * @param identifier the resource identifier
-     * @return an identifier for the datastream
-     */
-    default IRI generateIdentifier(IRI identifier) {
-        return generateIdentifier(identifier, null);
-    }
-
-    /**
-     * Generate an identifier for a new datastream resource using a particular
-     * partition hint.
-     * @param identifier the resource identifier
-     * @param partition the partition to use
-     * @return the new identifier for the datastream
-     */
-    IRI generateIdentifier(IRI identifier, Datastream.StoragePartition partition);
 
     /**
      * Get the resolver for the given identifier
