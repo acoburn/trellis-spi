@@ -53,40 +53,36 @@ public interface ResourceService {
 
     /**
      * Get a resource from the given location
-     * @param session the session
      * @param identifier the resource identifier
      * @return the resource
      */
-    Optional<Resource> get(Session session, IRI identifier);
+    Optional<Resource> get(IRI identifier);
 
     /**
      * Get a resource from the given location and time
-     * @param session the session
      * @param identifier the resource identifier
      * @param time the time
      * @return the resource
      */
-    Optional<Resource> get(Session session, IRI identifier, Instant time);
+    Optional<Resource> get(IRI identifier, Instant time);
 
     /**
      * Test whether a resource exists at the identifier
-     * @param session the session
      * @param identifier the resource identifier
-     * @return whether the identified resource exists
+     * @return true if the identified resource exists
      */
-    default Boolean exists(Session session, IRI identifier) {
-        return get(session, identifier).isPresent();
+    default Boolean exists(IRI identifier) {
+        return get(identifier).isPresent();
     }
 
     /**
      * Test whether a resource exists at the identifier at a given time
-     * @param session the session
      * @param identifier the resource identifier
      * @param time the time
-     * @return whether the identified resource exists
+     * @return true if the identified resource exists
      */
-    default Boolean exists(Session session, IRI identifier, Instant time) {
-        return get(session, identifier, time).isPresent();
+    default Boolean exists(IRI identifier, Instant time) {
+        return get(identifier, time).isPresent();
     }
 
     /**
