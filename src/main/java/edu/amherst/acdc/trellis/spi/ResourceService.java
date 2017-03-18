@@ -17,7 +17,6 @@ package edu.amherst.acdc.trellis.spi;
 
 import edu.amherst.acdc.trellis.api.Resource;
 
-import java.time.Duration;
 import java.time.Instant;
 import java.util.Optional;
 
@@ -106,37 +105,4 @@ public interface ResourceService {
      * @return whether the resource was deleted
      */
     Boolean delete(Session session, IRI identifier);
-
-    /**
-     * Commit changes to durable storage
-     * @param session the session
-     */
-    void commit(Session session);
-
-    /**
-     * Expire a session and drop any uncommitted changes
-     * @param session the session
-     */
-    void expire(Session session);
-
-    /**
-     * Begin a new session
-     * @return the session
-     */
-    Session begin();
-
-    /**
-     * Resume an existing session
-     * @param identifier the identifier
-     * @return the session, if it exists
-     */
-    Optional<Session> resume(IRI identifier);
-
-    /**
-     * Extend a session
-     * @param session the session
-     * @param duration the amount of time by which to extend the session
-     * @return the new session
-     */
-    Optional<Session> extend(Session session, Duration duration);
 }
