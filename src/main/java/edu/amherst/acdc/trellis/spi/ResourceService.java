@@ -87,10 +87,9 @@ public interface ResourceService {
 
     /**
      * Put a resource into the repository
-     * @param session the session
      * @param identifier the Identifier for the new resource
      * @param dataset the dataset
      * @return whether the resource was added
      */
-    Boolean put(Session session, IRI identifier, Dataset dataset);
+    Boolean put(IRI identifier, Dataset dataset);
 }
