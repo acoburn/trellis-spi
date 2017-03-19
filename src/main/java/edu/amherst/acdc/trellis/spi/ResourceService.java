@@ -93,12 +93,4 @@ public interface ResourceService {
      * @return whether the resource was added
      */
     Boolean put(Session session, IRI identifier, Dataset dataset);
-
-    /**
-     * Delete a resource
-     * @param session the session
-     * @param identifier the resource identifier
-     * @return whether the resource was deleted
-     */
-    Boolean delete(Session session, IRI identifier);
 }
