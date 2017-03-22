@@ -67,25 +67,6 @@ public interface ResourceService {
     Optional<Resource> get(IRI identifier, Instant time);
 
     /**
-     * Test whether a resource exists at the identifier
-     * @param identifier the resource identifier
-     * @return true if the identified resource exists
-     */
-    default Boolean exists(IRI identifier) {
-        return get(identifier).isPresent();
-    }
-
-    /**
-     * Test whether a resource exists at the identifier at a given time
-     * @param identifier the resource identifier
-     * @param time the time
-     * @return true if the identified resource exists
-     */
-    default Boolean exists(IRI identifier, Instant time) {
-        return get(identifier, time).isPresent();
-    }
-
-    /**
      * Put a resource into the repository
      * @param identifier the Identifier for the new resource
      * @param dataset the dataset
