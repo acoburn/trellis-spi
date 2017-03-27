@@ -23,6 +23,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Quad;
 import org.apache.commons.rdf.api.Triple;
 
 /**
@@ -105,4 +106,11 @@ public interface ResourceService {
      * @return a stream of RDF Triples, containing the resource and its LDP type
      */
     Stream<Triple> list(IRI identifier);
+
+    /**
+     * Export the complete repository as a stream of Quads
+     * @param repository the repository to export
+     * @return a stream of quads, where each named graph refers to the resource identifier
+     */
+    Stream<Quad> export(IRI repository);
 }
