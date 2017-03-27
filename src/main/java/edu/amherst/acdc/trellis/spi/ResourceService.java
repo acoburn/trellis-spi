@@ -19,9 +19,11 @@ import edu.amherst.acdc.trellis.api.Resource;
 
 import java.time.Instant;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Triple;
 
 /**
  * The ResourceService provides methods for creating, retrieving and manipulating
@@ -82,4 +84,25 @@ public interface ResourceService {
      * Note: The returned identifier is not guaranteed to exist
      */
     Optional<IRI> getContainer(IRI identifier);
+
+    /**
+     * Compact (i.e. remove the history) of a resource
+     * @param identifier the identifier
+     * @return true if the compaction operation succeeded; false otherwise
+     */
+    Boolean compact(IRI identifier);
+
+    /**
+     * Purge a resource from the repository
+     * @param identifier the identifier
+     * @return true if the purge operation succeeded; false otherwise
+     */
+    Boolean purge(IRI identifier);
+
+    /**
+     * Get a list of resources in the repository, starting with the listed resource
+     * @param identifier the identifier
+     * @return a stream of RDF Triples, containing the resource and its LDP type
+     */
+    Stream<Triple> list(IRI identifier);
 }
