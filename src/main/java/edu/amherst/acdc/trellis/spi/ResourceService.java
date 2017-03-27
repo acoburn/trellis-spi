@@ -68,9 +68,18 @@ public interface ResourceService {
 
     /**
      * Put a resource into the repository
-     * @param identifier the Identifier for the new resource
+     * @param identifier the identifier for the new resource
      * @param dataset the dataset
      * @return whether the resource was added
      */
     Boolean put(IRI identifier, Dataset dataset);
+
+    /**
+     * Get the identifier for the structurally-logical container for the resource
+     * @param identifier the identifier
+     * @return an identifier for the structurally-logical container
+     *
+     * Note: The returned identifier is not guaranteed to exist
+     */
+    Optional<IRI> getContainer(IRI identifier);
 }
