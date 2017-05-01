@@ -24,6 +24,7 @@ import java.util.stream.Stream;
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.Quad;
+import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.Triple;
 
 /**
@@ -106,6 +107,20 @@ public interface ResourceService {
      * @return a stream of RDF Triples, containing the resource and its LDP type
      */
     Stream<Triple> list(IRI identifier);
+
+    /**
+     * Skolemize a blank node
+     * @param term the RDF term
+     * @return a skolemized node, if a blank node; otherwise the original term
+     */
+    RDFTerm skolemize(RDFTerm term);
+
+    /**
+     * Un-skolemize a blank node
+     * @param term the RDF term
+     * @return a blank node, if a previously-skolemized node; otherwise the original term
+     */
+    RDFTerm unskolemize(RDFTerm term);
 
     /**
      * Export the complete repository as a stream of Quads
