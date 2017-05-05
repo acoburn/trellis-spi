@@ -1,6 +1,4 @@
 /*
- * Copyright Amherst College
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,46 +11,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.amherst.acdc.trellis.spi;
+package org.trellisldp.spi;
 
 /**
- * A class representing an invalid RDF exception
+ * A class representing an RDF constraint violation
  *
  * @author acoburn
  */
-public class InvalidRdfException extends RuntimeRepositoryException {
+public class ConstraintViolationException extends InvalidRdfException {
 
-    private static final long serialVersionUID = 8046489554418284259L;
+    private static final long serialVersionUID = 8046489554418284260L;
 
     /**
-     * Create a new InvalidRdfException
+     * Create a new ConstraintViolationException
      */
-    public InvalidRdfException() {
+    public ConstraintViolationException() {
         super();
     }
 
     /**
-     * Create a new InvalidRdfException with a custom message
+     * Create a new ConstraintViolationException with a custom message
      * @param message the message
      */
-    public InvalidRdfException(final String message) {
+    public ConstraintViolationException(final String message) {
         super(message);
     }
 
     /**
-     * Create a new InvalidRdfException with a custom message and known cause
+     * Create a new ConstraintViolationException with a custom message and known cause
      * @param message the message
      * @param cause the cause
      */
-    public InvalidRdfException(final String message, final Throwable cause) {
+    public ConstraintViolationException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Create a new InvalidRdfException with a known cause
+     * Create a new ConstraintViolationException with a known cause
      * @param cause the cause
      */
-    public InvalidRdfException(final Throwable cause) {
+    public ConstraintViolationException(final Throwable cause) {
         super(cause);
     }
 }

@@ -1,6 +1,4 @@
 /*
- * Copyright Amherst College
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,46 +11,46 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.amherst.acdc.trellis.spi;
+package org.trellisldp.spi;
 
 /**
- * Base class for all trellis unchecked exceptions.
+ * A class representing a not found error
  *
  * @author acoburn
  */
-public class RuntimeRepositoryException extends RuntimeException {
+public class ResourceNotFoundException extends RuntimeRepositoryException {
 
-    private static final long serialVersionUID = 8046489554418284257L;
+    private static final long serialVersionUID = 8046489554418284261L;
 
     /**
-     * Create a new RuntimeRepositoryException
+     * Create a new ResourceNotFoundException
      */
-    public RuntimeRepositoryException() {
+    public ResourceNotFoundException() {
         super();
     }
 
     /**
-     * Create a new RuntimeRepositoryException with a custom message
+     * Create a new ResourceNotFoundException with a custom message
      * @param message the message
      */
-    public RuntimeRepositoryException(final String message) {
+    public ResourceNotFoundException(final String message) {
         super(message);
     }
 
     /**
-     * Create a new RuntimeRepositoryException with a custom message and known cause
+     * Create a new ResourceNotFoundException with a custom message and known cause
      * @param message the message
      * @param cause the cause
      */
-    public RuntimeRepositoryException(final String message, final Throwable cause) {
+    public ResourceNotFoundException(final String message, final Throwable cause) {
         super(message, cause);
     }
 
     /**
-     * Create a new RuntimeRepositoryException with a known cause
+     * Create a new ResourceNotFoundException with a known cause
      * @param cause the cause
      */
-    public RuntimeRepositoryException(final Throwable cause) {
+    public ResourceNotFoundException(final Throwable cause) {
         super(cause);
     }
 }

@@ -1,6 +1,4 @@
 /*
- * Copyright Amherst College
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +11,12 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.amherst.acdc.trellis.spi;
-
-import java.util.function.Supplier;
-
-import org.apache.commons.rdf.api.IRI;
-
 /**
- * The IdGeneratorService provides a mechanism for creating new identifiers.
+ * Trellis Service Programming Interfaces
+ *
+ * <p>This package provides service-related interfaces for making use of
+ * and manipulataing the core repository resources.</p>
  *
  * @author acoburn
  */
-public interface IdGeneratorService {
-
-    /**
-     * Get a Supplier that generates IRIs with the provided prefix
-     * @param prefix the prefix
-     * @return an IRI Supplier
-     */
-    Supplier<IRI> getGenerator(IRI prefix);
-}
+package org.trellisldp.spi;

@@ -1,6 +1,4 @@
 /*
- * Copyright Amherst College
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,23 +11,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package edu.amherst.acdc.trellis.spi;
+package org.trellisldp.spi;
 
 import static java.time.Instant.now;
 import static java.util.Collections.singleton;
 import static java.util.Optional.of;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
-import static edu.amherst.acdc.trellis.spi.ActivityStreamSerializer.serialize;
-import static edu.amherst.acdc.trellis.vocabulary.AS.Create;
-import static edu.amherst.acdc.trellis.vocabulary.LDP.Container;
+import static org.trellisldp.spi.ActivityStreamSerializer.serialize;
+import static org.trellisldp.vocabulary.AS.Create;
+import static org.trellisldp.vocabulary.LDP.Container;
 
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import edu.amherst.acdc.trellis.vocabulary.AS;
+import org.trellisldp.vocabulary.AS;
 import org.apache.commons.rdf.api.RDF;
 import org.apache.commons.rdf.simple.SimpleRDF;
 import org.junit.Before;
