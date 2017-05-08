@@ -17,8 +17,6 @@ import static java.util.Collections.unmodifiableMap;
 import static java.util.stream.Stream.concat;
 import static java.util.stream.Stream.of;
 
-import org.trellisldp.vocabulary.LDP;
-
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -26,6 +24,7 @@ import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
+import org.trellisldp.vocabulary.LDP;
 
 /**
  * The ConstraintService defines rules that constrain RDF triples

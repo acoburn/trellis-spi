@@ -13,14 +13,14 @@
  */
 package org.trellisldp.spi;
 
-import org.trellisldp.api.Resource;
-import org.trellisldp.vocabulary.ACL;
-
 import java.util.Optional;
 import java.util.function.Predicate;
 import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.IRI;
+
+import org.trellisldp.api.Resource;
+import org.trellisldp.vocabulary.ACL;
 
 /**
  * The AccessControlService provides methods for checking user access to given resources

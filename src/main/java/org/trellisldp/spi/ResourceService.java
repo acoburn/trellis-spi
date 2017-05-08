@@ -13,8 +13,6 @@
  */
 package org.trellisldp.spi;
 
-import org.trellisldp.api.Resource;
-
 import java.time.Instant;
 import java.util.Optional;
 import java.util.stream.Stream;
@@ -24,6 +22,7 @@ import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.Quad;
 import org.apache.commons.rdf.api.RDFTerm;
 import org.apache.commons.rdf.api.Triple;
+import org.trellisldp.api.Resource;
 
 /**
  * The ResourceService provides methods for creating, retrieving and manipulating

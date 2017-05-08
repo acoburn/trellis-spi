@@ -14,9 +14,9 @@
 package org.trellisldp.spi;
 
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
-import static org.trellisldp.spi.ActivityStreamMessage.from;
 import static java.util.Optional.empty;
 import static java.util.Optional.of;
+import static org.trellisldp.spi.ActivityStreamMessage.from;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;

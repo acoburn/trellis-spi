@@ -16,8 +16,6 @@ package org.trellisldp.spi;
 import static java.util.Collections.unmodifiableSet;
 import static java.util.Objects.requireNonNull;
 
-import org.trellisldp.vocabulary.ACL;
-
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -25,6 +23,7 @@ import java.util.Set;
 
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
+import org.trellisldp.vocabulary.ACL;
 
 /**
  * This class provides access to data defined in an WebAC Authorization graph. Access to a resource can be
