@@ -34,26 +34,6 @@ import org.apache.commons.rdf.api.Triple;
 public interface ResourceService {
 
     /**
-     * Set the event service
-     * @param service the event service
-     */
-    default void setEventService(EventService service) {
-        bind(service);
-    }
-
-    /**
-     * Bind the event service
-     * @param service the event service
-     */
-    void bind(EventService service);
-
-    /**
-     * Unbind the event service
-     * @param service the event service
-     */
-    void unbind(EventService service);
-
-    /**
      * Get a resource from the given location
      * @param identifier the resource identifier
      * @return the resource

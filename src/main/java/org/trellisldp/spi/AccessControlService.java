@@ -34,46 +34,6 @@ import org.apache.commons.rdf.api.IRI;
 public interface AccessControlService {
 
     /**
-     * Add a resource service
-     * @param service the service
-     */
-    default void setResourceService(ResourceService service) {
-        bind(service);
-    }
-
-    /**
-     * Bind a resource service
-     * @param service the service
-     */
-    void bind(ResourceService service);
-
-    /**
-     * Remove a resource service
-     * @param service the service
-     */
-    void unbind(ResourceService service);
-
-    /**
-     * Add an agent service
-     * @param service the service
-     */
-    default void setAgentService(AgentService service) {
-        bind(service);
-    }
-
-    /**
-     * Add an agent service
-     * @param service the service
-     */
-    void bind(AgentService service);
-
-    /**
-     * Remove an agent service
-     * @param service the service
-     */
-    void unbind(AgentService service);
-
-    /**
      * Test whether the resource is readable
      * @param session the user session
      * @param identifier the resource identifier
