@@ -13,7 +13,6 @@
  */
 package org.trellisldp.spi;
 
-import static java.util.Arrays.asList;
 import static java.util.Collections.emptyMap;
 
 import java.io.InputStream;
