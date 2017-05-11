@@ -13,11 +13,13 @@
  */
 package org.trellisldp.spi;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyMap;
 
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.Optional;
 
 import org.apache.commons.rdf.api.IRI;
@@ -121,6 +123,12 @@ public interface DatastreamService {
     default Optional<String> calculateDigest(IRI identifier, String algorithm) {
         return getContent(identifier).flatMap(stream -> hexDigest(algorithm, stream));
     }
+
+    /**
+     * Get a list of supported algorithms
+     * @return the supported digest algorithms
+     */
+    Set<String> supportedAlgorithms();
 
     /**
      * Get the resolver for the given identifier
