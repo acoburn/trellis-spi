@@ -17,6 +17,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.stream.Stream;
 
+import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDFSyntax;
 import org.apache.commons.rdf.api.Triple;
@@ -46,4 +47,11 @@ public interface SerializationService {
      * @return a stream of triples
      */
     Stream<Triple> read(InputStream input, String context, RDFSyntax syntax);
+
+    /**
+     * Apply a Sparql-Update operation over a Graph
+     * @param graph the input graph
+     * @param update the sparql-update request
+     */
+    void update(Graph graph, String update);
 }
