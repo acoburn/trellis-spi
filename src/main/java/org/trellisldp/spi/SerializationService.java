@@ -52,6 +52,7 @@ public interface SerializationService {
      * Apply a Sparql-Update operation over a Graph
      * @param graph the input graph
      * @param update the sparql-update request
+     * @param context the context to resolve relative IRIs
      */
-    void update(Graph graph, String update);
+    void update(Graph graph, String update, String context);
 }
