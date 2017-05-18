@@ -36,7 +36,7 @@ import org.trellisldp.vocabulary.XSD;
  *
  * @author acoburn
  */
-public class AuditData {
+public final class AuditData {
 
     private static RDF rdf = ServiceLoader.load(RDF.class).iterator().next();
 
@@ -46,7 +46,7 @@ public class AuditData {
      * @param session the session
      * @return the quads
      */
-    public Dataset creationData(final BlankNodeOrIRI subject, final Session session) {
+    public static Dataset creationData(final BlankNodeOrIRI subject, final Session session) {
         return genData(subject, session, asList(PROV.Activity, AS.Create));
     }
 
@@ -56,7 +56,7 @@ public class AuditData {
      * @param session the session
      * @return the quads
      */
-    public Dataset deletionData(final BlankNodeOrIRI subject, final Session session) {
+    public static Dataset deletionData(final BlankNodeOrIRI subject, final Session session) {
         return genData(subject, session, asList(PROV.Activity, AS.Delete));
     }
 
@@ -66,11 +66,11 @@ public class AuditData {
      * @param session the session
      * @return the quads
      */
-    public Dataset updateData(final BlankNodeOrIRI subject, final Session session) {
+    public static Dataset updateData(final BlankNodeOrIRI subject, final Session session) {
         return genData(subject, session, asList(PROV.Activity, AS.Update));
     }
 
-    private Dataset genData(final BlankNodeOrIRI subject, final Session session, final List<IRI> types) {
+    private static Dataset genData(final BlankNodeOrIRI subject, final Session session, final List<IRI> types) {
         final Dataset dataset = rdf.createDataset();
         types.forEach(t ->
             dataset.add(rdf.createQuad(PreferAudit, subject, type, t)));
@@ -80,5 +80,9 @@ public class AuditData {
         session.getDelegatedBy().ifPresent(delegate ->
                 dataset.add(rdf.createQuad(PreferAudit, subject, PROV.actedOnBehalfOf, delegate)));
         return dataset;
+    }
+
+    private AuditData() {
+        // prevent instantiation
     }
 }
