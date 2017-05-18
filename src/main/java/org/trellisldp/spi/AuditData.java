@@ -13,7 +13,6 @@
  */
 package org.trellisldp.spi;
 
-import static java.time.Instant.now;
 import static java.util.Arrays.asList;
 import static org.trellisldp.vocabulary.RDF.type;
 import static org.trellisldp.vocabulary.Trellis.PreferAudit;
@@ -76,7 +75,7 @@ public final class AuditData {
             dataset.add(rdf.createQuad(PreferAudit, subject, type, t)));
         dataset.add(rdf.createQuad(PreferAudit, subject, PROV.wasAssociatedWith, session.getAgent()));
         dataset.add(rdf.createQuad(PreferAudit, subject, PROV.startedAtTime,
-                    rdf.createLiteral(now().toString(), XSD.dateTime)));
+                    rdf.createLiteral(session.getCreated().toString(), XSD.dateTime)));
         session.getDelegatedBy().ifPresent(delegate ->
                 dataset.add(rdf.createQuad(PreferAudit, subject, PROV.actedOnBehalfOf, delegate)));
         return dataset;
