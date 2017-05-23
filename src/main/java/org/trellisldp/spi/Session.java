@@ -54,10 +54,4 @@ public interface Session {
      * @return the creation date
      */
     Instant getCreated();
-
-    /**
-     * Get the expiration date, if one exists
-     * @return the expiration date, if one exists
-     */
-    Optional<Instant> getExpiry();
 }

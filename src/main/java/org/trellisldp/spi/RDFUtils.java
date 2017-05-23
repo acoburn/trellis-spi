@@ -30,14 +30,22 @@ import org.trellisldp.vocabulary.PROV;
 import org.trellisldp.vocabulary.XSD;
 
 /**
- * The Audit Event class provides methods for adding audit-related quads
- * to datasets.
+ * The RDFUtils class provides a set of convenience methods related to
+ * generating and processing RDF objects.
  *
  * @author acoburn
  */
-public final class AuditData {
+public final class RDFUtils {
 
     private static RDF rdf = ServiceLoader.load(RDF.class).iterator().next();
+
+    /**
+     * Get the Commons RDF instance in use
+     * @return the RDF instance
+     */
+    public static RDF getInstance() {
+        return rdf;
+    }
 
     /**
      * Create audit-related creation data
@@ -45,8 +53,8 @@ public final class AuditData {
      * @param session the session
      * @return the quads
      */
-    public static Dataset creationData(final BlankNodeOrIRI subject, final Session session) {
-        return genData(subject, session, asList(PROV.Activity, AS.Create));
+    public static Dataset auditCreation(final BlankNodeOrIRI subject, final Session session) {
+        return auditData(subject, session, asList(PROV.Activity, AS.Create));
     }
 
     /**
@@ -55,8 +63,8 @@ public final class AuditData {
      * @param session the session
      * @return the quads
      */
-    public static Dataset deletionData(final BlankNodeOrIRI subject, final Session session) {
-        return genData(subject, session, asList(PROV.Activity, AS.Delete));
+    public static Dataset auditDeletion(final BlankNodeOrIRI subject, final Session session) {
+        return auditData(subject, session, asList(PROV.Activity, AS.Delete));
     }
 
     /**
@@ -65,11 +73,11 @@ public final class AuditData {
      * @param session the session
      * @return the quads
      */
-    public static Dataset updateData(final BlankNodeOrIRI subject, final Session session) {
-        return genData(subject, session, asList(PROV.Activity, AS.Update));
+    public static Dataset auditUpdate(final BlankNodeOrIRI subject, final Session session) {
+        return auditData(subject, session, asList(PROV.Activity, AS.Update));
     }
 
-    private static Dataset genData(final BlankNodeOrIRI subject, final Session session, final List<IRI> types) {
+    private static Dataset auditData(final BlankNodeOrIRI subject, final Session session, final List<IRI> types) {
         final Dataset dataset = rdf.createDataset();
         types.forEach(t ->
             dataset.add(rdf.createQuad(PreferAudit, subject, type, t)));
@@ -81,7 +89,7 @@ public final class AuditData {
         return dataset;
     }
 
-    private AuditData() {
+    private RDFUtils() {
         // prevent instantiation
     }
 }
