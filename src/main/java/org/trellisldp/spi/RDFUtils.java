@@ -20,7 +20,7 @@ import static org.trellisldp.vocabulary.Trellis.PreferAudit;
 import java.util.ServiceLoader;
 import java.util.List;
 
-import org.apache.commons.rdf.api.BlankNodeOrIRI;
+import org.apache.commons.rdf.api.BlankNode;
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDF;
@@ -53,7 +53,7 @@ public final class RDFUtils {
      * @param session the session
      * @return the quads
      */
-    public static Dataset auditCreation(final BlankNodeOrIRI subject, final Session session) {
+    public static Dataset auditCreation(final IRI subject, final Session session) {
         return auditData(subject, session, asList(PROV.Activity, AS.Create));
     }
 
@@ -63,7 +63,7 @@ public final class RDFUtils {
      * @param session the session
      * @return the quads
      */
-    public static Dataset auditDeletion(final BlankNodeOrIRI subject, final Session session) {
+    public static Dataset auditDeletion(final IRI subject, final Session session) {
         return auditData(subject, session, asList(PROV.Activity, AS.Delete));
     }
 
@@ -73,19 +73,21 @@ public final class RDFUtils {
      * @param session the session
      * @return the quads
      */
-    public static Dataset auditUpdate(final BlankNodeOrIRI subject, final Session session) {
+    public static Dataset auditUpdate(final IRI subject, final Session session) {
         return auditData(subject, session, asList(PROV.Activity, AS.Update));
     }
 
-    private static Dataset auditData(final BlankNodeOrIRI subject, final Session session, final List<IRI> types) {
+    private static Dataset auditData(final IRI subject, final Session session, final List<IRI> types) {
         final Dataset dataset = rdf.createDataset();
+        final BlankNode bnode = rdf.createBlankNode();
+        dataset.add(rdf.createQuad(PreferAudit, subject, PROV.wasGeneratedBy, bnode));
         types.forEach(t ->
-            dataset.add(rdf.createQuad(PreferAudit, subject, type, t)));
-        dataset.add(rdf.createQuad(PreferAudit, subject, PROV.wasAssociatedWith, session.getAgent()));
-        dataset.add(rdf.createQuad(PreferAudit, subject, PROV.startedAtTime,
+            dataset.add(rdf.createQuad(PreferAudit, bnode, type, t)));
+        dataset.add(rdf.createQuad(PreferAudit, bnode, PROV.wasAssociatedWith, session.getAgent()));
+        dataset.add(rdf.createQuad(PreferAudit, bnode, PROV.startedAtTime,
                     rdf.createLiteral(session.getCreated().toString(), XSD.dateTime)));
         session.getDelegatedBy().ifPresent(delegate ->
-                dataset.add(rdf.createQuad(PreferAudit, subject, PROV.actedOnBehalfOf, delegate)));
+                dataset.add(rdf.createQuad(PreferAudit, bnode, PROV.actedOnBehalfOf, delegate)));
         return dataset;
     }
 
