@@ -17,8 +17,8 @@ import static java.util.Arrays.asList;
 import static org.trellisldp.vocabulary.RDF.type;
 import static org.trellisldp.vocabulary.Trellis.PreferAudit;
 
-import java.util.ServiceLoader;
 import java.util.List;
+import java.util.ServiceLoader;
 
 import org.apache.commons.rdf.api.BlankNode;
 import org.apache.commons.rdf.api.Dataset;

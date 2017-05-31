@@ -18,8 +18,8 @@ import static java.util.Collections.emptyMap;
 import java.io.InputStream;
 import java.util.List;
 import java.util.Map;
-import java.util.Set;
 import java.util.Optional;
+import java.util.Set;
 
 import org.apache.commons.rdf.api.IRI;
 
