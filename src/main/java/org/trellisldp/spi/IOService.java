@@ -23,15 +23,15 @@ import org.apache.commons.rdf.api.RDFSyntax;
 import org.apache.commons.rdf.api.Triple;
 
 /**
- * The SerializationService defines methods for reading and writing RDF streams
+ * The IOService defines methods for reading, writing and updating RDF streams
  * to/from a concrete RDF 1.1 syntax.
  *
  * @author acoburn
  */
-public interface SerializationService {
+public interface IOService {
 
     /**
-     * Serialize the triple stream as RDF
+     * Serialize the triple stream in a concrete RDF syntax
      * @param triples the stream of triples
      * @param output the output stream
      * @param syntax the output format

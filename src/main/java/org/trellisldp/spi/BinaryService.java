@@ -24,15 +24,15 @@ import java.util.Optional;
 import org.apache.commons.rdf.api.IRI;
 
 /**
- * The DatastreamService provides methods for retrieving, modifying and checking
+ * The BinaryService provides methods for retrieving, modifying and checking
  * the validity of binary content.
  *
  * @author acoburn
  */
-public interface DatastreamService {
+public interface BinaryService {
 
     /**
-     * A datastream resolver, used by the DatastreamService
+     * A blob resolver, used by the BinaryService
      */
     interface Resolver {
         /**
@@ -41,21 +41,21 @@ public interface DatastreamService {
         List<String> getUriSchemes();
 
         /**
-         * Get the content of the datastream
+         * Get the content of the binary object
          * @param identifier the identifier
-         * @return the content of the datastream
+         * @return the content of the binary object
          */
         Optional<InputStream> getContent(IRI identifier);
 
         /**
-         * Check whether the datastream exists
+         * Check whether the binary object exists
          * @param identifier the identifier
-         * @return whether the datastream exists
+         * @return whether the binary object exists
          */
         Boolean exists(IRI identifier);
 
         /**
-         * Set the content of the datastream
+         * Set the content of the binary object
          * @param identifier the identifier
          * @param stream the stream
          */
@@ -64,7 +64,7 @@ public interface DatastreamService {
         }
 
         /**
-         * Set the content of the datastream
+         * Set the content of the binary object
          * @param identifier the identifier
          * @param stream the content
          * @param metadata any user metadata
@@ -73,8 +73,8 @@ public interface DatastreamService {
     }
 
     /**
-     * Get the content of the datastream
-     * @param identifier an identifier used for locating the datastream
+     * Get the content of the binary object
+     * @param identifier an identifier used for locating the binary object
      * @return the content
      */
     default Optional<InputStream> getContent(IRI identifier) {
@@ -82,17 +82,17 @@ public interface DatastreamService {
     }
 
     /**
-     * Test whether a datastream exists at the given URI
-     * @param identifier the datastream identifier
-     * @return whether the datastream exists
+     * Test whether a binary object exists at the given URI
+     * @param identifier the binary object identifier
+     * @return whether the binary object exists
      */
     default Boolean exists(IRI identifier) {
         return getResolver(identifier).map(resolver -> resolver.exists(identifier)).orElse(false);
     }
 
     /**
-     * Set the content for a datastream
-     * @param identifier the datastream identifier
+     * Set the content for a binary object
+     * @param identifier the binary object identifier
      * @param stream the content
      */
     default void setContent(IRI identifier, InputStream stream) {
@@ -100,8 +100,8 @@ public interface DatastreamService {
     }
 
     /**
-     * Set the content for a datastream
-     * @param identifier the datastream identifier
+     * Set the content for a binary object
+     * @param identifier the binary object identifier
      * @param stream the content
      * @param metadata any user metadata
      */
@@ -110,7 +110,7 @@ public interface DatastreamService {
     }
 
     /**
-     * Calculate the digest for a datastream
+     * Calculate the digest for a binary object
      * @param identifier the identifier
      * @param algorithm the algorithm
      * @return the digest
@@ -132,7 +132,7 @@ public interface DatastreamService {
     /**
      * Get the resolver for the given identifier
      * @param identifier the identifier
-     * @return a datastream resolver
+     * @return a binary object resolver
      */
     Optional<Resolver> getResolver(IRI identifier);
 
