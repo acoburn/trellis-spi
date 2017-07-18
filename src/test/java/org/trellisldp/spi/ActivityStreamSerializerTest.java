@@ -66,6 +66,13 @@ public class ActivityStreamSerializerTest {
     }
 
     @Test
+    public void testEventServiceSerializer() {
+        final Optional<String> json = EventService.serialize(mockEvent);
+        assertTrue(json.isPresent());
+        assertTrue(json.get().contains("\"inbox\":\"info:ldn/inbox\""));
+    }
+
+    @Test
     public void testSerializationStructure() throws Exception {
         final Optional<String> json = serialize(mockEvent);
         assertTrue(json.isPresent());
