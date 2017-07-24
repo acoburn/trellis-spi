@@ -67,7 +67,7 @@ public class AuthorizationTest {
         graph.add(rdf.createTriple(subject, ACL.accessToClass, PROV.Activity));
         graph.add(rdf.createTriple(other, ACL.accessToClass, PROV.Entity));
 
-        graph.add(rdf.createTriple(subject, ACL.defaultForNew, rdf.createIRI("trellis:repository/container")));
+        graph.add(rdf.createTriple(subject, ACL.default_, rdf.createIRI("trellis:repository/container")));
     }
 
     @Test
@@ -97,7 +97,7 @@ public class AuthorizationTest {
         assertEquals(1, auth.getAccessToClass().size());
         assertTrue(auth.getAccessToClass().contains(PROV.Activity));
 
-        assertEquals(1, auth.getDefaultForNew().size());
-        assertTrue(auth.getDefaultForNew().contains(rdf.createIRI("trellis:repository/container")));
+        assertEquals(1, auth.getDefault().size());
+        assertTrue(auth.getDefault().contains(rdf.createIRI("trellis:repository/container")));
     }
 }

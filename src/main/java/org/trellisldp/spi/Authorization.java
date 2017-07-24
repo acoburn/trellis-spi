@@ -50,7 +50,7 @@ public class Authorization {
         put(ACL.mode, new HashSet<>());
         put(ACL.accessTo, new HashSet<>());
         put(ACL.accessToClass, new HashSet<>());
-        put(ACL.defaultForNew, new HashSet<>());
+        put(ACL.default_, new HashSet<>());
     }};
 
     /**
@@ -139,7 +139,7 @@ public class Authorization {
      * Retrieve the directories for which this authorization is used for new resources in the container
      * @return the resource identifiers
      */
-    public Set<IRI> getDefaultForNew() {
-        return unmodifiableSet(dataMap.get(ACL.defaultForNew));
+    public Set<IRI> getDefault() {
+        return unmodifiableSet(dataMap.get(ACL.default_));
     }
 }
