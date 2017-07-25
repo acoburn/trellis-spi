@@ -13,7 +13,6 @@
  */
 package org.trellisldp.spi;
 
-import static java.time.Instant.now;
 import static java.util.Collections.singleton;
 import static java.util.Optional.of;
 import static org.junit.Assert.assertTrue;
@@ -34,7 +33,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
-import org.mockito.runners.MockitoJUnitRunner;
+import org.mockito.junit.MockitoJUnitRunner;
 
 /**
  * @author acoburn
@@ -54,7 +53,6 @@ public class ActivityStreamSerializerTest {
         when(mockEvent.getTarget()).thenReturn(of(rdf.createIRI("trellis:repository/resource")));
         when(mockEvent.getTypes()).thenReturn(singleton(Create));
         when(mockEvent.getTargetTypes()).thenReturn(singleton(Container));
-        when(mockEvent.getCreated()).thenReturn(now());
         when(mockEvent.getInbox()).thenReturn(of(rdf.createIRI("info:ldn/inbox")));
     }
 

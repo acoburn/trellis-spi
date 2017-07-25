@@ -96,7 +96,7 @@ public interface BinaryService {
      * @param stream the content
      */
     default void setContent(IRI identifier, InputStream stream) {
-        setContent(identifier, stream, emptyMap());
+        getResolver(identifier).ifPresent(resolver -> resolver.setContent(identifier, stream));
     }
 
     /**
