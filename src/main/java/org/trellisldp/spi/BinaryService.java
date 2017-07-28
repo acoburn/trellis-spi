@@ -147,7 +147,8 @@ public interface BinaryService {
 
     /**
      * An identifier supplier
+     * @param prefix a prefix to use for the identifiers
      * @return a supplier of identifiers for new resources
      */
-    Supplier<String> getIdentifierSupplier();
+    Supplier<String> getIdentifierSupplier(String prefix);
 }
