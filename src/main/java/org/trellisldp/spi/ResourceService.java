@@ -15,6 +15,7 @@ package org.trellisldp.spi;
 
 import java.time.Instant;
 import java.util.Optional;
+import java.util.function.Supplier;
 import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.Dataset;
@@ -105,4 +106,10 @@ public interface ResourceService {
      * @return a stream of quads, where each named graph refers to the resource identifier
      */
     Stream<Quad> export(IRI repository);
+
+    /**
+     * An identifier supplier
+     * @return a supplier of identifiers for new resources
+     */
+    Supplier<String> getIdentifierSupplier();
 }

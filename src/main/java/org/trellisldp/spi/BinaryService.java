@@ -20,6 +20,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
+import java.util.function.Supplier;
 
 import org.apache.commons.rdf.api.IRI;
 
@@ -143,4 +144,10 @@ public interface BinaryService {
      * @return the digest
      */
     Optional<String> hexDigest(String algorithm, InputStream stream);
+
+    /**
+     * An identifier supplier
+     * @return a supplier of identifiers for new resources
+     */
+    Supplier<String> getIdentifierSupplier();
 }
