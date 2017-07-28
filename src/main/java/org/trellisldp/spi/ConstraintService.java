@@ -46,10 +46,11 @@ public interface ConstraintService {
     /**
      * Check a graph against an LDP interaction model
      * @param interactionModel the interaction model
+     * @param domain the domain of the resource
      * @param graph the graph
      * @return any constraint on the graph
      */
-    Optional<IRI> constrainedBy(IRI interactionModel, Graph graph);
+    Optional<IRI> constrainedBy(IRI interactionModel, String domain, Graph graph);
 
     /**
      * Get all of the LDP resource (super) types for the given LDP interaction model
