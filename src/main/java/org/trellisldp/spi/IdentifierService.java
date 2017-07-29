@@ -23,6 +23,59 @@ import java.util.function.Supplier;
 public interface IdentifierService {
 
     /**
+     * A configuration object for use with an IdentiferService
+     */
+    public static class IdentifierConfiguration {
+
+        private final String prefix;
+        private final Integer hierarchy;
+        private final Integer length;
+
+        /**
+         * Configuration for an identifier supplier
+         */
+        public IdentifierConfiguration() {
+            this("", 0, 0);
+        }
+
+        /**
+         * Configuration for an identifier supplier
+         * @param prefix a prefix
+         * @param hierarchy levels of hierarchy
+         * @param length the length of any hierarchy segment
+         */
+        public IdentifierConfiguration(final String prefix, final Integer hierarchy, final Integer length) {
+            this.prefix = prefix;
+            this.hierarchy = hierarchy;
+            this.length = length;
+        }
+
+        /**
+         * Get the prefix
+         * @return the prefix
+         */
+        public String getPrefix() {
+            return prefix;
+        }
+
+        /**
+         * Get the levels of hierarchy
+         * @return the levels of hierarchy
+         */
+        public Integer getHierarchy() {
+            return hierarchy;
+        }
+
+        /**
+         * Get the length of each hierarchy segment
+         * @return the length of each segment
+         */
+        public Integer getLength() {
+            return length;
+        }
+    }
+
+    /**
      * Get a Supplier that generates Strings with the provided prefix
      * @param prefix the prefix
      * @param hierarchy the levels of hierarchy to add
