@@ -43,75 +43,84 @@ public interface BinaryService {
 
         /**
          * Get the content of the binary object
+         * @param partition the partition to use
          * @param identifier the identifier
          * @return the content of the binary object
          */
-        Optional<InputStream> getContent(IRI identifier);
+        Optional<InputStream> getContent(String partition, IRI identifier);
 
         /**
          * Check whether the binary object exists
+         * @param partition the partition to use
          * @param identifier the identifier
          * @return whether the binary object exists
          */
-        Boolean exists(IRI identifier);
+        Boolean exists(String partition, IRI identifier);
 
         /**
          * Set the content of the binary object
+         * @param partition the partition to use
          * @param identifier the identifier
          * @param stream the stream
          */
-        default void setContent(IRI identifier, InputStream stream) {
-            setContent(identifier, stream, emptyMap());
+        default void setContent(String partition, IRI identifier, InputStream stream) {
+            setContent(partition, identifier, stream, emptyMap());
         }
 
         /**
          * Set the content of the binary object
+         * @param partition the partition to use
          * @param identifier the identifier
          * @param stream the content
          * @param metadata any user metadata
          */
-        void setContent(IRI identifier, InputStream stream, Map<String, String> metadata);
+        void setContent(String partition, IRI identifier, InputStream stream, Map<String, String> metadata);
     }
 
     /**
      * Get the content of the binary object
+     * @param partition the partition to use
      * @param identifier an identifier used for locating the binary object
      * @return the content
      */
-    default Optional<InputStream> getContent(IRI identifier) {
-        return getResolver(identifier).flatMap(resolver -> resolver.getContent(identifier));
+    default Optional<InputStream> getContent(String partition, IRI identifier) {
+        return getResolver(identifier).flatMap(resolver -> resolver.getContent(partition, identifier));
     }
 
     /**
      * Test whether a binary object exists at the given URI
+     * @param partition the partition to use
      * @param identifier the binary object identifier
      * @return whether the binary object exists
      */
-    default Boolean exists(IRI identifier) {
-        return getResolver(identifier).map(resolver -> resolver.exists(identifier)).orElse(false);
+    default Boolean exists(String partition, IRI identifier) {
+        return getResolver(identifier).map(resolver -> resolver.exists(partition, identifier)).orElse(false);
     }
 
     /**
      * Set the content for a binary object
+     * @param partition the partition to use
      * @param identifier the binary object identifier
      * @param stream the content
      */
-    default void setContent(IRI identifier, InputStream stream) {
-        getResolver(identifier).ifPresent(resolver -> resolver.setContent(identifier, stream));
+    default void setContent(String partition, IRI identifier, InputStream stream) {
+        getResolver(identifier).ifPresent(resolver -> resolver.setContent(partition, identifier, stream));
     }
 
     /**
      * Set the content for a binary object
+     * @param partition the partition to use
      * @param identifier the binary object identifier
      * @param stream the content
      * @param metadata any user metadata
      */
-    default void setContent(IRI identifier, InputStream stream, Map<String, String> metadata) {
-        getResolver(identifier).ifPresent(resolver -> resolver.setContent(identifier, stream, metadata));
+    default void setContent(String partition, IRI identifier, InputStream stream, Map<String, String> metadata) {
+        getResolver(identifier).ifPresent(resolver -> resolver.setContent(partition, identifier, stream, metadata));
     }
 
     /**
      * Calculate the digest for a binary object
+     * @param partition the partition to use
      * @param identifier the identifier
      * @param algorithm the algorithm
      * @return the digest
@@ -120,8 +129,8 @@ public interface BinaryService {
      * not just the HTTP payload.</p>
      *
      */
-    default Optional<String> calculateDigest(IRI identifier, String algorithm) {
-        return getContent(identifier).flatMap(stream -> hexDigest(algorithm, stream));
+    default Optional<String> calculateDigest(String partition, IRI identifier, String algorithm) {
+        return getContent(partition, identifier).flatMap(stream -> hexDigest(algorithm, stream));
     }
 
     /**
