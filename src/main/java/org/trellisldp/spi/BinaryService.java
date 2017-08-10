@@ -77,6 +77,39 @@ public interface BinaryService {
          * @param metadata any user metadata
          */
         void setContent(String partition, IRI identifier, InputStream stream, Map<String, String> metadata);
+
+        /**
+         * Test whether the resolver supports multipart uploads
+         * @return true if the resolver supports multipart uploads; false otherwise
+         */
+        Boolean supportsMultipartUpload();
+
+        /**
+         * Initiate a multi-part upload
+         * @param partition the partition
+         * @param identifier the object identifier
+         * @param mimeType the mimeType of the object
+         * @return an upload session identifier
+         */
+        String initiateUpload(String partition, IRI identifier, String mimeType);
+
+        /**
+         * Upload a part
+         * @param identifier the upload identifier
+         * @param partNumber the part number
+         * @param contentLength the size of the upload
+         * @param content the content to upload
+         * @return a digest value returned for each part; this value is used later wich completeUpload()
+         */
+        String uploadPart(String identifier, Integer partNumber, Integer contentLength, InputStream content);
+
+        /**
+         * Complete a multi-part upload
+         * @param identifier the upload identifier
+         * @param partDigests digest values for each part
+         * @return a Binary object
+         */
+        Binary completeUpload(String identifier, Map<Integer, String> partDigests);
     }
 
     /**
@@ -162,31 +195,4 @@ public interface BinaryService {
      * @return a supplier of identifiers for new resources
      */
     Supplier<String> getIdentifierSupplier(String partition);
-
-    /**
-     * Initiate a multi-part upload
-     * @param partition the partition
-     * @param identifier the object identifier
-     * @param mimeType the mimeType of the object
-     * @return an upload session identifier
-     */
-    String initiateUpload(String partition, IRI identifier, String mimeType);
-
-    /**
-     * Upload a part
-     * @param identifier the upload identifier
-     * @param partNumber the part number
-     * @param contentLength the size of the upload
-     * @param content the content to upload
-     * @return a digest value returned for each part; this value is used later wich completeUpload()
-     */
-    String uploadPart(String identifier, Integer partNumber, Integer contentLength, InputStream content);
-
-    /**
-     * Complete a multi-part upload
-     * @param identifier the upload identifier
-     * @param partDigests digest values for each part
-     * @return a Binary object
-     */
-    Binary completeUpload(String identifier, Map<Integer, String> partDigests);
 }
