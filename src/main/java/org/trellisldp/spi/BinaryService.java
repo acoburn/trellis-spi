@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.Optional;
 import java.util.Set;
 import java.util.function.Supplier;
+import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.IRI;
 
@@ -115,6 +116,13 @@ public interface BinaryService {
          * @param identifier the upload identifier
          */
         void abortUpload(String identifier);
+
+        /**
+         * List the uploaded parts
+         * @param identifier the upload identifier
+         * @return a list of uploaded parts and their digests
+         */
+        Stream<Map.Entry<Integer, String>> listParts(String identifier);
     }
 
     /**
