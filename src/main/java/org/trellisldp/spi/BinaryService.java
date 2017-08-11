@@ -182,6 +182,13 @@ public interface BinaryService {
     Optional<Resolver> getResolver(IRI identifier);
 
     /**
+     * Get the default resolver for the given partition
+     * @param partition the partition name
+     * @return a binary object resolver
+     */
+    Optional<Resolver> getResolverForPartition(String partition);
+
+    /**
      * Get the digest for an input stream
      * @param algorithm the algorithm to use
      * @param stream the input stream
