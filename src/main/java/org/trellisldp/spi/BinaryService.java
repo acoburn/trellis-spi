@@ -97,11 +97,10 @@ public interface BinaryService {
          * Upload a part
          * @param identifier the upload identifier
          * @param partNumber the part number
-         * @param contentLength the size of the upload
          * @param content the content to upload
          * @return a digest value returned for each part; this value is used later wich completeUpload()
          */
-        String uploadPart(String identifier, Integer partNumber, Integer contentLength, InputStream content);
+        String uploadPart(String identifier, Integer partNumber, InputStream content);
 
         /**
          * Complete a multi-part upload
