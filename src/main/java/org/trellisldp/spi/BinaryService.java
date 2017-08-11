@@ -110,6 +110,12 @@ public interface BinaryService {
          * @return a Binary object
          */
         Binary completeUpload(String identifier, Map<Integer, String> partDigests);
+
+        /**
+         * Abort the upload for the given identifier
+         * @param identifier the upload identifier
+         */
+        void abortUpload(String identifier);
     }
 
     /**
