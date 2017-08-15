@@ -36,6 +36,62 @@ import org.trellisldp.api.Binary;
 public interface BinaryService {
 
     /**
+     * A multipart upload container
+     */
+    public class MultipartUpload {
+        private final Binary binary;
+        private final String baseUrl;
+        private final String path;
+        private final Session session;
+
+        /**
+         * Create a Multipart Upload object
+         * @param baseUrl the base URL
+         * @param path the path
+         * @param session the session
+         * @param binary the binary
+         */
+        public MultipartUpload(final String baseUrl, final String path, final Session session, final Binary binary) {
+            this.baseUrl = baseUrl;
+            this.path = path;
+            this.session = session;
+            this.binary = binary;
+        }
+
+        /**
+         * The binary object
+         * @return the binary
+         */
+        public Binary getBinary() {
+            return binary;
+        }
+
+        /**
+         * The path
+         * @return the path
+         */
+        public String getPath() {
+            return path;
+        }
+
+        /**
+         * The base URL
+         * @return the base URL
+         */
+        public String getBaseUrl() {
+            return baseUrl;
+        }
+
+        /**
+         * The Session
+         * @return the session
+         */
+        public Session getSession() {
+            return session;
+        }
+    }
+
+    /**
      * A blob resolver, used by the BinaryService
      */
     interface Resolver {
@@ -107,9 +163,9 @@ public interface BinaryService {
          * Complete a multi-part upload
          * @param identifier the upload identifier
          * @param partDigests digest values for each part
-         * @return a Binary object
+         * @return a multipart upload object
          */
-        Map.Entry<IRI, Binary> completeUpload(String identifier, Map<Integer, String> partDigests);
+        MultipartUpload completeUpload(String identifier, Map<Integer, String> partDigests);
 
         /**
          * Abort the upload for the given identifier

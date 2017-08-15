@@ -38,6 +38,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
+import org.trellisldp.api.Binary;
 
 /**
  * @author acoburn
@@ -60,6 +61,12 @@ public class BinaryServiceTest {
 
     @Mock
     private BinaryService.Resolver mockResolver;
+
+    @Mock
+    private Session mockSession;
+
+    @Mock
+    private Binary mockBinary;
 
     @Before
     public void setUp() {
@@ -88,5 +95,17 @@ public class BinaryServiceTest {
         assertTrue(mockBinaryService.getContent(partition, other).isPresent());
         assertEquals(of(checksum), mockBinaryService.calculateDigest(partition, other, "md5"));
         verify(mockResolver, times(2)).setContent(eq(partition), eq(identifier), eq(mockInputStream), eq(data));
+    }
+
+    @Test
+    public void testMultipartUpload() {
+        final String baseUrl = "baseurl";
+        final String path = "path";
+        final BinaryService.MultipartUpload upload = new BinaryService.MultipartUpload(baseUrl, path, mockSession,
+                mockBinary);
+        assertEquals(baseUrl, upload.getBaseUrl());
+        assertEquals(path, upload.getPath());
+        assertEquals(mockSession, upload.getSession());
+        assertEquals(mockBinary, upload.getBinary());
     }
 }
