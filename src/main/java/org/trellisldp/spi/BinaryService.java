@@ -109,13 +109,20 @@ public interface BinaryService {
          * @param partDigests digest values for each part
          * @return a Binary object
          */
-        Binary completeUpload(String identifier, Map<Integer, String> partDigests);
+        Map.Entry<IRI, Binary> completeUpload(String identifier, Map<Integer, String> partDigests);
 
         /**
          * Abort the upload for the given identifier
          * @param identifier the upload identifier
          */
         void abortUpload(String identifier);
+
+        /**
+         * Test whether the provided identifier exists
+         * @param identifier the upload identifier
+         * @return true if the session exists; false otherwise
+         */
+        Boolean uploadSessionExists(String identifier);
 
         /**
          * List the uploaded parts
