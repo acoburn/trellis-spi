@@ -32,7 +32,7 @@ ext {
     trellisApiVersion = '0.1.0-SNAPSHOT'
     trellisVocabularyVersion = '0.1.0-SNAPSHOT'
     commonsRdfVersion = '0.3.0-incubating'
-    jacksonVersion = '2.8.9'
+    jacksonVersion = '2.9.0'
     slf4jVersion = '1.7.25'
 
     /* Testing */
