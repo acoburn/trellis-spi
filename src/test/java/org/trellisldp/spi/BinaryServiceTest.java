@@ -79,7 +79,7 @@ public class BinaryServiceTest {
         when(mockResolver.getContent(eq(partition), any())).thenReturn(of(mockInputStream));
         when(mockResolver.exists(eq(partition), eq(identifier))).thenReturn(true);
         when(mockBinaryService.getResolver(any())).thenReturn(of(mockResolver));
-        when(mockBinaryService.hexDigest(any(), any())).thenReturn(of(checksum));
+        when(mockBinaryService.digest(any(), any())).thenReturn(of(checksum));
         doNothing().when(mockResolver).setContent(eq(partition), any(), any(), any());
     }
 

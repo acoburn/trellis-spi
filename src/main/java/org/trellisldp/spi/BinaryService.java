@@ -241,7 +241,7 @@ public interface BinaryService {
      *
      */
     default Optional<String> calculateDigest(String partition, IRI identifier, String algorithm) {
-        return getContent(partition, identifier).flatMap(stream -> hexDigest(algorithm, stream));
+        return getContent(partition, identifier).flatMap(stream -> digest(algorithm, stream));
     }
 
     /**
@@ -268,9 +268,12 @@ public interface BinaryService {
      * Get the digest for an input stream
      * @param algorithm the algorithm to use
      * @param stream the input stream
-     * @return the digest
+     * @return a string representation of the digest
+     *
+     * <p>Note: the digest likely uses the base64 encoding, but the specific encoding is defined
+     * for each algorithm at https://www.iana.org/assignments/http-dig-alg/http-dig-alg.xhtml</p>
      */
-    Optional<String> hexDigest(String algorithm, InputStream stream);
+    Optional<String> digest(String algorithm, InputStream stream);
 
     /**
      * An identifier supplier
