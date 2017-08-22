@@ -13,13 +13,10 @@
  */
 package org.trellisldp.spi;
 
-import java.util.Optional;
 import java.util.function.Predicate;
-import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.IRI;
 
-import org.trellisldp.api.Resource;
 import org.trellisldp.vocabulary.ACL;
 
 /**
@@ -81,25 +78,4 @@ public interface AccessControlService {
      * @return Returns whether any elements of the Authorization stream match
      */
     Boolean anyMatch(Session session, IRI identifier, Predicate<IRI> predicate);
-
-    /**
-     * Find the effective ACL for the given resource identifier
-     * @param identifier the resource identifier
-     * @return the ACL identifier
-     */
-    Optional<IRI> findAclFor(IRI identifier);
-
-    /**
-     * Find the first ancestor resource with an access control declaration
-     * @param identifier the starting resource
-     * @return the resource identifier
-     */
-    Optional<Resource> findAncestorWithAccessControl(IRI identifier);
-
-    /**
-     * Fetch the authorizations for the provided resource
-     * @param identifier the resource containing acl:Authorization statements
-     * @return a stream of Authorizations
-     */
-    Stream<Authorization> getAuthorizations(IRI identifier);
 }
