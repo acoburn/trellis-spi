@@ -21,6 +21,7 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
+import org.apache.commons.rdf.api.BlankNodeOrIRI;
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
 import org.trellisldp.vocabulary.ACL;
@@ -42,16 +43,8 @@ import org.trellisldp.vocabulary.ACL;
  */
 public class Authorization {
 
-    private final IRI identifier;
-    private final Map<IRI, Set<IRI>> dataMap = new HashMap<IRI, Set<IRI>>() { {
-        put(ACL.agent, new HashSet<>());
-        put(ACL.agentClass, new HashSet<>());
-        put(ACL.agentGroup, new HashSet<>());
-        put(ACL.mode, new HashSet<>());
-        put(ACL.accessTo, new HashSet<>());
-        put(ACL.accessToClass, new HashSet<>());
-        put(ACL.default_, new HashSet<>());
-    }};
+    private final BlankNodeOrIRI identifier;
+    private final Map<IRI, Set<IRI>> dataMap;
 
     /**
      * Create an Authorization object from a graph and an identifier
@@ -59,7 +52,7 @@ public class Authorization {
      * @param graph the graph
      * @return the Authorization object
      */
-    public static Authorization from(final IRI identifier, final Graph graph) {
+    public static Authorization from(final BlankNodeOrIRI identifier, final Graph graph) {
         return new Authorization(identifier, graph);
     }
 
@@ -68,11 +61,20 @@ public class Authorization {
      * @param identifier the subject IRI
      * @param graph the RDF graph
      */
-    public Authorization(final IRI identifier, final Graph graph) {
+    public Authorization(final BlankNodeOrIRI identifier, final Graph graph) {
         requireNonNull(identifier, "The Authorization identifier may not be null!");
         requireNonNull(graph, "The input graph may not be null!");
 
         this.identifier = identifier;
+        this.dataMap = new HashMap<IRI, Set<IRI>>() { {
+            put(ACL.agent, new HashSet<>());
+            put(ACL.agentClass, new HashSet<>());
+            put(ACL.agentGroup, new HashSet<>());
+            put(ACL.mode, new HashSet<>());
+            put(ACL.accessTo, new HashSet<>());
+            put(ACL.default_, new HashSet<>());
+        }};
+
         graph.stream(identifier, null, null).filter(triple -> dataMap.containsKey(triple.getPredicate()))
             .filter(triple -> triple.getObject() instanceof IRI)
             .forEach(triple -> dataMap.get(triple.getPredicate()).add((IRI) triple.getObject()));
@@ -82,7 +84,7 @@ public class Authorization {
      * Retrieve the identifier for this Authorization
      * @return the identifier
      */
-    public IRI getIdentifier() {
+    public BlankNodeOrIRI getIdentifier() {
         return identifier;
     }
 
@@ -124,15 +126,6 @@ public class Authorization {
      */
     public Set<IRI> getAccessTo() {
         return unmodifiableSet(dataMap.get(ACL.accessTo));
-    }
-
-
-    /**
-     * Retrieve the accessToClass values that are associated with this Authorization
-     * @return the accessToClass values
-     */
-    public Set<IRI> getAccessToClass() {
-        return unmodifiableSet(dataMap.get(ACL.accessToClass));
     }
 
     /**

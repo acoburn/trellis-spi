@@ -94,9 +94,6 @@ public class AuthorizationTest {
         assertTrue(auth.getAccessTo().contains(rdf.createIRI("trellis:repository/resource3")));
         assertTrue(auth.getAccessTo().contains(rdf.createIRI("trellis:repository/resource4")));
 
-        assertEquals(1, auth.getAccessToClass().size());
-        assertTrue(auth.getAccessToClass().contains(PROV.Activity));
-
         assertEquals(1, auth.getDefault().size());
         assertTrue(auth.getDefault().contains(rdf.createIRI("trellis:repository/container")));
     }
