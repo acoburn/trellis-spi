@@ -29,6 +29,7 @@ import java.time.Instant;
 
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
+import org.apache.commons.rdf.api.Literal;
 import org.apache.commons.rdf.api.RDF;
 import org.junit.Before;
 import org.junit.Test;
@@ -108,4 +109,22 @@ public class RDFUtilsTest {
                     rdf.createLiteral(created.toString(), XSD.dateTime)));
         assertEquals(6L, dataset.size());
     }
+
+    @Test
+    public void testToInternalExternalTerm() {
+        final String baseUrl = "http://example.org/";
+        final String path = "repo/resource";
+        final IRI internalIRI = rdf.createIRI(ResourceService.TRELLIS_PREFIX + path);
+        final IRI externalIRI = rdf.createIRI(baseUrl + path);
+        final IRI otherIRI = rdf.createIRI("http://example.com/foo/bar");
+        final Literal literal = rdf.createLiteral("some value");
+
+        assertEquals(externalIRI, RDFUtils.toExternalTerm(internalIRI, baseUrl));
+        assertEquals(internalIRI, RDFUtils.toInternalTerm(externalIRI, baseUrl));
+        assertEquals(otherIRI, RDFUtils.toExternalTerm(otherIRI, baseUrl));
+        assertEquals(otherIRI, RDFUtils.toInternalTerm(otherIRI, baseUrl));
+        assertEquals(literal, RDFUtils.toExternalTerm(literal, baseUrl));
+        assertEquals(literal, RDFUtils.toInternalTerm(literal, baseUrl));
+    }
+
 }

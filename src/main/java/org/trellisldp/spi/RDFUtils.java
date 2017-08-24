@@ -14,6 +14,7 @@
 package org.trellisldp.spi;
 
 import static java.util.Arrays.asList;
+import static org.trellisldp.spi.ResourceService.TRELLIS_PREFIX;
 import static org.trellisldp.vocabulary.RDF.type;
 import static org.trellisldp.vocabulary.Trellis.PreferAudit;
 
@@ -24,6 +25,7 @@ import org.apache.commons.rdf.api.BlankNode;
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.RDF;
+import org.apache.commons.rdf.api.RDFTerm;
 
 import org.trellisldp.vocabulary.AS;
 import org.trellisldp.vocabulary.PROV;
@@ -89,6 +91,42 @@ public final class RDFUtils {
         session.getDelegatedBy().ifPresent(delegate ->
                 dataset.add(rdf.createQuad(PreferAudit, bnode, PROV.actedOnBehalfOf, delegate)));
         return dataset;
+    }
+
+    /**
+     * Convert an internal term to an external term
+     * @param <T> the RDF term type
+     * @param term the RDF term
+     * @param baseUrl the base URL
+     * @return a converted RDF term
+     */
+    @SuppressWarnings("unchecked")
+    public static <T extends RDFTerm> T toExternalTerm(final T term, final String baseUrl) {
+        if (term instanceof IRI) {
+            final String iri = ((IRI) term).getIRIString();
+            if (iri.startsWith(TRELLIS_PREFIX)) {
+                return (T) rdf.createIRI(baseUrl + iri.substring(TRELLIS_PREFIX.length()));
+            }
+        }
+        return term;
+    }
+
+    /**
+     * Convert an external term to an internal term
+     * @param <T> the RDF term type
+     * @param term the RDF term
+     * @param baseUrl the base URL
+     * @return a converted RDF term
+     */
+    @SuppressWarnings("unchecked")
+    public static <T extends RDFTerm> T toInternalTerm(final T term, final String baseUrl) {
+        if (term instanceof IRI) {
+            final String iri = ((IRI) term).getIRIString();
+            if (iri.startsWith(baseUrl)) {
+                return (T) rdf.createIRI(TRELLIS_PREFIX + iri.substring(baseUrl.length()));
+            }
+        }
+        return term;
     }
 
     private RDFUtils() {

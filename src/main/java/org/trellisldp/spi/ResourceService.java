@@ -103,24 +103,6 @@ public interface ResourceService {
     RDFTerm unskolemize(RDFTerm term);
 
     /**
-     * Convert an internal term to an external term
-     * @param <T> the RDF term type
-     * @param term the RDF term
-     * @param baseUrl the base URL
-     * @return a converted RDF term
-     */
-    <T extends RDFTerm> T toExternalTerm(T term, String baseUrl);
-
-    /**
-     * Convert an external term to an internal term
-     * @param <T> the RDF term type
-     * @param term the RDF term
-     * @param baseUrl the base URL
-     * @return a converted RDF term
-     */
-    <T extends RDFTerm> T toInternalTerm(T term, String baseUrl);
-
-    /**
      * Export the complete repository as a stream of Quads
      * @param repository the repository to export
      * @return a stream of quads, where each named graph refers to the resource identifier
