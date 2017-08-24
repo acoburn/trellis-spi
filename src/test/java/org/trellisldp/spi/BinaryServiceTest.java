@@ -75,12 +75,14 @@ public class BinaryServiceTest {
         doCallRealMethod().when(mockBinaryService).setContent(eq(partition), any(), any());
         doCallRealMethod().when(mockBinaryService).exists(eq(partition), any());
         doCallRealMethod().when(mockBinaryService).calculateDigest(eq(partition), any(), any());
+        doCallRealMethod().when(mockBinaryService).purgeContent(any(), any());
         doCallRealMethod().when(mockResolver).setContent(any(), any(), any());
         when(mockResolver.getContent(eq(partition), any())).thenReturn(of(mockInputStream));
         when(mockResolver.exists(eq(partition), eq(identifier))).thenReturn(true);
         when(mockBinaryService.getResolver(any())).thenReturn(of(mockResolver));
         when(mockBinaryService.digest(any(), any())).thenReturn(of(checksum));
         doNothing().when(mockResolver).setContent(eq(partition), any(), any(), any());
+        doNothing().when(mockResolver).purgeContent(eq(partition), any());
     }
 
     @Test
@@ -92,9 +94,11 @@ public class BinaryServiceTest {
         assertFalse(mockBinaryService.exists(partition, other));
         mockBinaryService.setContent(partition, identifier, mockInputStream, data);
         mockBinaryService.setContent(partition, identifier, mockInputStream);
+        mockBinaryService.purgeContent(partition, identifier);
         assertTrue(mockBinaryService.getContent(partition, other).isPresent());
         assertEquals(of(checksum), mockBinaryService.calculateDigest(partition, other, "md5"));
         verify(mockResolver, times(2)).setContent(eq(partition), eq(identifier), eq(mockInputStream), eq(data));
+        verify(mockResolver).purgeContent(eq(partition), eq(identifier));
     }
 
     @Test

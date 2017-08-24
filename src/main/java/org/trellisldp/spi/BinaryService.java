@@ -136,6 +136,13 @@ public interface BinaryService {
         void setContent(String partition, IRI identifier, InputStream stream, Map<String, String> metadata);
 
         /**
+         * Remove the content from the datastore
+         * @param partition the partition to use
+         * @param identifier the identifier
+         */
+        void purgeContent(String partition, IRI identifier);
+
+        /**
          * Test whether the resolver supports multipart uploads
          * @return true if the resolver supports multipart uploads; false otherwise
          */
@@ -227,6 +234,15 @@ public interface BinaryService {
      */
     default void setContent(String partition, IRI identifier, InputStream stream, Map<String, String> metadata) {
         getResolver(identifier).ifPresent(resolver -> resolver.setContent(partition, identifier, stream, metadata));
+    }
+
+    /**
+     * Purge the content from its corresponding datastore
+     * @param partition the partition to use
+     * @param identifier the binary object identifier
+     */
+    default void purgeContent(String partition, IRI identifier) {
+        getResolver(identifier).ifPresent(resolver -> resolver.purgeContent(partition, identifier));
     }
 
     /**
