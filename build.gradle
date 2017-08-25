@@ -22,6 +22,7 @@ group = 'org.trellisldp'
 description = 'Trellis SPI'
 
 ext {
+    moduleName = 'org.trellisldp.spi'
     vendor = 'Trellis LDP'
     homepage = 'http://www.trellisldp.org'
     docURL = 'http://www.trellisldp.org/apidocs'
@@ -101,9 +102,9 @@ jar {
         vendor project.vendor
         license project.license
 
-        instruction 'Automatic-Module-Name', 'org.trellisldp.spi'
+        instruction 'Automatic-Module-Name', moduleName
         instruction 'Import-Package', '*'
-        instruction 'Export-Package', "org.trellisldp.spi;version=${projectOsgiVersion}"
+        instruction 'Export-Package', "${moduleName};version=${projectOsgiVersion}"
     }
 }
 
