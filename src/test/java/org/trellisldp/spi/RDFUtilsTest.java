@@ -70,7 +70,8 @@ public class RDFUtilsTest {
 
     @Test
     public void testAuditCreation() {
-        final Dataset dataset = auditCreation(subject, mockSession);
+        final Dataset dataset = rdf.createDataset();
+        auditCreation(subject, mockSession).forEach(dataset::add);
         assertTrue(dataset.getGraph(Trellis.PreferAudit).filter(graph -> graph.size() == dataset.size()).isPresent());
         assertTrue(dataset.contains(null, null, type, PROV.Activity));
         assertTrue(dataset.contains(null, null, type, AS.Create));
@@ -84,7 +85,8 @@ public class RDFUtilsTest {
 
     @Test
     public void testAuditDeletion() {
-        final Dataset dataset = auditDeletion(subject, mockSession);
+        final Dataset dataset = rdf.createDataset();
+        auditDeletion(subject, mockSession).forEach(dataset::add);
         assertTrue(dataset.getGraph(Trellis.PreferAudit).filter(graph -> graph.size() == dataset.size()).isPresent());
         assertTrue(dataset.contains(null, null, type, PROV.Activity));
         assertTrue(dataset.contains(null, null, type, AS.Delete));
@@ -98,7 +100,8 @@ public class RDFUtilsTest {
 
     @Test
     public void testAuditUpdate() {
-        final Dataset dataset = auditUpdate(subject, mockSession);
+        final Dataset dataset = rdf.createDataset();
+        auditUpdate(subject, mockSession).forEach(dataset::add);
         assertTrue(dataset.getGraph(Trellis.PreferAudit).filter(graph -> graph.size() == dataset.size()).isPresent());
         assertTrue(dataset.contains(null, null, type, PROV.Activity));
         assertTrue(dataset.contains(null, null, type, AS.Update));
@@ -114,7 +117,7 @@ public class RDFUtilsTest {
     public void testToInternalExternalTerm() {
         final String baseUrl = "http://example.org/";
         final String path = "repo/resource";
-        final IRI internalIRI = rdf.createIRI(ResourceService.TRELLIS_PREFIX + path);
+        final IRI internalIRI = rdf.createIRI(RDFUtils.TRELLIS_PREFIX + path);
         final IRI externalIRI = rdf.createIRI(baseUrl + path);
         final IRI otherIRI = rdf.createIRI("http://example.com/foo/bar");
         final Literal literal = rdf.createLiteral("some value");

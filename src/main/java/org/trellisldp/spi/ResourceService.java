@@ -33,8 +33,6 @@ import org.trellisldp.api.Resource;
  */
 public interface ResourceService {
 
-    public static final String TRELLIS_PREFIX = "trellis:";
-
     /**
      * Get a resource from the given location
      * @param identifier the resource identifier

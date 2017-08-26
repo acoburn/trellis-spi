@@ -34,15 +34,8 @@ class ActivityStreamMessage {
      * The target resource of a message
      */
     static class EventResource {
-        /**
-         * The resource identifier
-         */
-        public String id;
-
-        /**
-         * The resource types
-         */
-        public List<String> type;
+        private String id;
+        private List<String> type;
 
         /**
          * Create a new event resource target
@@ -53,32 +46,66 @@ class ActivityStreamMessage {
             this.id = id;
             this.type = type;
         }
+
+        /**
+         * Get the identifier
+         * @return the id
+         */
+        public String getId() {
+            return id;
+        }
+
+        /**
+         * Get the resource types
+         * @return the types
+         */
+        public List<String> getType() {
+            return type;
+        }
+    }
+
+    private String id;
+    private List<String> type;
+    private String inbox;
+    private List<String> actor;
+    private EventResource object;
+
+    /**
+     * Get the event identifier
+     * @return the event identifier
+     */
+    public String getId() {
+        return id;
     }
 
     /**
-     * The event identifier
+     * Get the event types
+     * @return the event types
      */
-    public String id;
-
-    /**
-     * The event types
-     */
-    public List<String> type;
+    public List<String> getType() {
+        return type;
+    }
 
     /**
      * The inbox assocated with the resource
      */
-    public String inbox;
+    public String getInbox() {
+        return inbox;
+    }
 
     /**
      * The actors associated with this event
      */
-    public List<String> actor;
+    public List<String> getActor() {
+        return actor;
+    }
 
     /**
      * The target resource
      */
-    public EventResource object;
+    public EventResource getObject() {
+        return object;
+    }
 
     /**
      * The JSON-LD context

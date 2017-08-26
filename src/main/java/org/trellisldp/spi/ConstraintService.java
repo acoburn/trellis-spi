@@ -13,12 +13,9 @@
  */
 package org.trellisldp.spi;
 
-import static java.util.Collections.unmodifiableMap;
 import static java.util.stream.Stream.concat;
 import static java.util.stream.Stream.of;
 
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -33,15 +30,6 @@ import org.trellisldp.vocabulary.LDP;
  * @author acoburn
  */
 public interface ConstraintService {
-
-    static Map<IRI, IRI> subClassOf = unmodifiableMap(new HashMap<IRI, IRI>() { {
-        put(LDP.NonRDFSource, LDP.Resource);
-        put(LDP.RDFSource, LDP.Resource);
-        put(LDP.Container, LDP.RDFSource);
-        put(LDP.BasicContainer, LDP.Container);
-        put(LDP.DirectContainer, LDP.Container);
-        put(LDP.IndirectContainer, LDP.Container);
-    }});
 
     /**
      * Check a graph against an LDP interaction model
@@ -58,7 +46,7 @@ public interface ConstraintService {
      * @return a stream of types
      */
     static Stream<IRI> ldpResourceTypes(final IRI interactionModel) {
-        return of(interactionModel).filter(type -> subClassOf.containsKey(type) || LDP.Resource.equals(type))
-            .flatMap(type -> concat(ldpResourceTypes(subClassOf.get(type)), of(type)));
+        return of(interactionModel).filter(type -> RDFUtils.superClassOf.containsKey(type) || LDP.Resource.equals(type))
+            .flatMap(type -> concat(ldpResourceTypes(RDFUtils.superClassOf.get(type)), of(type)));
     }
 }

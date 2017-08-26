@@ -44,7 +44,7 @@ import org.trellisldp.vocabulary.ACL;
 public class Authorization {
 
     private final BlankNodeOrIRI identifier;
-    private final Map<IRI, Set<IRI>> dataMap;
+    private final Map<IRI, Set<IRI>> dataMap = new HashMap<>();
 
     /**
      * Create an Authorization object from a graph and an identifier
@@ -66,14 +66,13 @@ public class Authorization {
         requireNonNull(graph, "The input graph may not be null!");
 
         this.identifier = identifier;
-        this.dataMap = new HashMap<IRI, Set<IRI>>() { {
-            put(ACL.agent, new HashSet<>());
-            put(ACL.agentClass, new HashSet<>());
-            put(ACL.agentGroup, new HashSet<>());
-            put(ACL.mode, new HashSet<>());
-            put(ACL.accessTo, new HashSet<>());
-            put(ACL.default_, new HashSet<>());
-        }};
+
+        this.dataMap.put(ACL.agent, new HashSet<>());
+        this.dataMap.put(ACL.agentClass, new HashSet<>());
+        this.dataMap.put(ACL.agentGroup, new HashSet<>());
+        this.dataMap.put(ACL.mode, new HashSet<>());
+        this.dataMap.put(ACL.accessTo, new HashSet<>());
+        this.dataMap.put(ACL.default_, new HashSet<>());
 
         graph.stream(identifier, null, null).filter(triple -> dataMap.containsKey(triple.getPredicate()))
             .filter(triple -> triple.getObject() instanceof IRI)
