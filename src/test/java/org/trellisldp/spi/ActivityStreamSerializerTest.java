@@ -88,7 +88,7 @@ public class ActivityStreamSerializerTest {
         final List types = (List) map.get("type");
         assertTrue(types.contains(Create.getIRIString()));
 
-        assertTrue(AS.uri.contains((String) map.get("@context")));
+        assertTrue(AS.URI.contains((String) map.get("@context")));
 
         final List actor = (List) map.get("actor");
         assertTrue(actor.contains("info:user/test"));
