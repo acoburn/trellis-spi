@@ -55,4 +55,11 @@ public class ConstraintViolationTest {
         assertTrue(violation.getTriples().contains(triple2));
         assertEquals(2L, violation.getTriples().size());
     }
+
+    @Test
+    public void testToString() {
+        final ConstraintViolation violation = new ConstraintViolation(InvalidProperty, triple);
+        assertEquals("http://www.trellisldp.org/ns/trellis#InvalidProperty: " +
+                "[<ex:subject> <http://www.w3.org/ns/ldp#contains> <ex:object> .]", violation.toString());
+    }
 }

@@ -65,4 +65,9 @@ public class ConstraintViolation {
     public List<Triple> getTriples() {
         return triples;
     }
+
+    @Override
+    public String toString() {
+        return constraint.getIRIString() + ": " + triples;
+    }
 }
