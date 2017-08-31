@@ -13,15 +13,10 @@
  */
 package org.trellisldp.spi;
 
-import static java.util.stream.Stream.concat;
-import static java.util.stream.Stream.of;
-
 import java.util.Optional;
-import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.Graph;
 import org.apache.commons.rdf.api.IRI;
-import org.trellisldp.vocabulary.LDP;
 
 /**
  * The ConstraintService defines rules that constrain RDF triples
@@ -36,17 +31,7 @@ public interface ConstraintService {
      * @param interactionModel the interaction model
      * @param domain the domain of the resource
      * @param graph the graph
-     * @return any constraint on the graph
+     * @return any constraint violation on the graph
      */
-    Optional<IRI> constrainedBy(IRI interactionModel, String domain, Graph graph);
-
-    /**
-     * Get all of the LDP resource (super) types for the given LDP interaction model
-     * @param interactionModel the interaction model
-     * @return a stream of types
-     */
-    static Stream<IRI> ldpResourceTypes(final IRI interactionModel) {
-        return of(interactionModel).filter(type -> RDFUtils.superClassOf.containsKey(type) || LDP.Resource.equals(type))
-            .flatMap(type -> concat(ldpResourceTypes(RDFUtils.superClassOf.get(type)), of(type)));
-    }
+    Optional<ConstraintViolation> constrainedBy(IRI interactionModel, String domain, Graph graph);
 }

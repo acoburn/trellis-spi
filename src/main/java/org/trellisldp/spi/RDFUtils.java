@@ -15,6 +15,8 @@ package org.trellisldp.spi;
 
 import static java.util.Arrays.asList;
 import static java.util.Collections.unmodifiableMap;
+import static java.util.stream.Stream.concat;
+import static java.util.stream.Stream.of;
 import static org.trellisldp.vocabulary.RDF.type;
 import static org.trellisldp.vocabulary.Trellis.PreferAudit;
 
@@ -23,6 +25,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.ServiceLoader;
+import java.util.stream.Stream;
 
 import org.apache.commons.rdf.api.BlankNode;
 import org.apache.commons.rdf.api.IRI;
@@ -120,6 +123,16 @@ public final class RDFUtils {
         session.getDelegatedBy().ifPresent(delegate ->
                 data.add(rdf.createQuad(PreferAudit, bnode, PROV.actedOnBehalfOf, delegate)));
         return data;
+    }
+
+    /**
+     * Get all of the LDP resource (super) types for the given LDP interaction model
+     * @param interactionModel the interaction model
+     * @return a stream of types
+     */
+    static Stream<IRI> ldpResourceTypes(final IRI interactionModel) {
+        return of(interactionModel).filter(type -> RDFUtils.superClassOf.containsKey(type) || LDP.Resource.equals(type))
+            .flatMap(type -> concat(ldpResourceTypes(RDFUtils.superClassOf.get(type)), of(type)));
     }
 
     /**

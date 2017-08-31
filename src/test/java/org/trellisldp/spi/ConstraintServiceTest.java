@@ -14,7 +14,7 @@
 package org.trellisldp.spi;
 
 import static java.util.stream.Collectors.toSet;
-import static org.trellisldp.spi.ConstraintService.ldpResourceTypes;
+import static org.trellisldp.spi.RDFUtils.ldpResourceTypes;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
