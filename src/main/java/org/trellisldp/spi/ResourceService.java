@@ -14,6 +14,7 @@
 package org.trellisldp.spi;
 
 import java.time.Instant;
+import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
@@ -80,11 +81,11 @@ public interface ResourceService {
     Boolean purge(IRI identifier);
 
     /**
-     * Get a list of resources in the repository, starting with the listed resource
-     * @param identifier the identifier
+     * Get a list of resources in the partition
+     * @param partition the partition
      * @return a stream of RDF Triples, containing the resource and its LDP type
      */
-    Stream<Triple> list(IRI identifier);
+    Stream<Triple> list(String partition);
 
     /**
      * Skolemize a blank node
@@ -102,10 +103,11 @@ public interface ResourceService {
 
     /**
      * Export the complete repository as a stream of Quads
-     * @param repository the repository to export
+     * @param partition the partition to export
+     * @param graphNames the graph names to export
      * @return a stream of quads, where each named graph refers to the resource identifier
      */
-    Stream<Quad> export(IRI repository);
+    Stream<Quad> export(String partition, Collection<IRI> graphNames);
 
     /**
      * An identifier supplier
