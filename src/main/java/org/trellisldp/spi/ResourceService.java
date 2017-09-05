@@ -69,16 +69,16 @@ public interface ResourceService {
     /**
      * Compact (i.e. remove the history) of a resource
      * @param identifier the identifier
-     * @return true if the compaction operation succeeded; false otherwise
+     * @return a stream of binary IRIs that can be safely purged
      */
-    Boolean compact(IRI identifier);
+    Stream<IRI> compact(IRI identifier);
 
     /**
      * Purge a resource from the repository
      * @param identifier the identifier
-     * @return true if the purge operation succeeded; false otherwise
+     * @return a stream of binary IRIs that can be safely purged
      */
-    Boolean purge(IRI identifier);
+    Stream<IRI> purge(IRI identifier);
 
     /**
      * Get a list of resources in the partition
