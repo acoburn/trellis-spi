@@ -56,7 +56,7 @@ public final class RDFUtils {
     /**
      * The internal blank node prefix
      */
-    public static final String TRELLIS_BNODE = "trellis:bnode/";
+    public static final String TRELLIS_BNODE_PREFIX = "trellis:bnode/";
 
     /**
      * A mapping of LDP types to their supertype
