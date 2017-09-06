@@ -13,8 +13,6 @@
  */
 package org.trellisldp.spi;
 
-import java.util.stream.Stream;
-
 import org.apache.commons.rdf.api.IRI;
 
 /**
@@ -30,13 +28,6 @@ public interface AgentService {
      * @return whether the agent is an admin user
      */
     Boolean isAdmin(IRI agent);
-
-    /**
-     * Get the groups associated with this agent
-     * @param agent the agent identifier
-     * @return the groups associated with this user
-     */
-    Stream<IRI> getGroups(IRI agent);
 
     /**
      * Convert an agent String into an IRI
