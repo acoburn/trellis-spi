@@ -35,4 +35,12 @@ public interface AgentService {
      * @return the agent as an IRI
      */
     IRI asAgent(String agent);
+
+    /**
+     * Test whether an agent is in a group
+     * @param agent the agent identitifer
+     * @param group the group identifier
+     * @return true if the agent is a member of the group; false otherwise
+     */
+    Boolean isAgentInGroup(IRI agent, IRI group);
 }
