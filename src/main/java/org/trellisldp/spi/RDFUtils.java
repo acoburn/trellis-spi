@@ -171,6 +171,28 @@ public final class RDFUtils {
         return term;
     }
 
+    /**
+     * Clean the identifier
+     * @param identifier the identifier
+     * @return the cleaned identifier
+     */
+    public static String cleanIdentifier(final String identifier) {
+        final String id = identifier.split("#")[0].split("\\?")[0];
+        if (id.endsWith("/")) {
+            return id.substring(0, id.length() - 1);
+        }
+        return id;
+    }
+
+    /**
+     * Clean the identifier
+     * @param identifier the identifier
+     * @return the cleaned identifier
+     */
+    public static IRI cleanIdentifier(final IRI identifier) {
+        return rdf.createIRI(cleanIdentifier(identifier.getIRIString()));
+    }
+
     private RDFUtils() {
         // prevent instantiation
     }

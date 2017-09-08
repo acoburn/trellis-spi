@@ -130,4 +130,20 @@ public class RDFUtilsTest {
         assertEquals(literal, RDFUtils.toInternalTerm(literal, baseUrl));
     }
 
+    @Test
+    public void testCleanIdentifier() {
+        assertEquals("trellis:repository", RDFUtils.cleanIdentifier("trellis:repository/"));
+        assertEquals("trellis:repository", RDFUtils.cleanIdentifier("trellis:repository/#hash"));
+        assertEquals("trellis:repository", RDFUtils.cleanIdentifier("trellis:repository/?foo=bar#hash"));
+        assertEquals("trellis:repository", RDFUtils.cleanIdentifier("trellis:repository#hash"));
+        assertEquals("trellis:repository", RDFUtils.cleanIdentifier("trellis:repository?foo=bar"));
+        assertEquals("trellis:repository", RDFUtils.cleanIdentifier("trellis:repository?foo=bar#hash"));
+        final IRI identifier = rdf.createIRI("trellis:repository");
+        assertEquals(identifier, RDFUtils.cleanIdentifier(rdf.createIRI("trellis:repository/")));
+        assertEquals(identifier, RDFUtils.cleanIdentifier(rdf.createIRI("trellis:repository/#hash")));
+        assertEquals(identifier, RDFUtils.cleanIdentifier(rdf.createIRI("trellis:repository/?foo=bar#hash")));
+        assertEquals(identifier, RDFUtils.cleanIdentifier(rdf.createIRI("trellis:repository#hash")));
+        assertEquals(identifier, RDFUtils.cleanIdentifier(rdf.createIRI("trellis:repository?foo=bar#hash")));
+    }
+
 }
