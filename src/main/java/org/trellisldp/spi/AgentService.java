@@ -23,13 +23,6 @@ import org.apache.commons.rdf.api.IRI;
 public interface AgentService {
 
     /**
-     * Test whether the agent is an administrator
-     * @param agent the agent identifier
-     * @return whether the agent is an admin user
-     */
-    Boolean isAdmin(IRI agent);
-
-    /**
      * Convert an agent String into an IRI
      * @param agent the agent as a string
      * @return the agent as an IRI
