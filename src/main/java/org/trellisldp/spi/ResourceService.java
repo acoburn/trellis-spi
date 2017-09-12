@@ -69,9 +69,11 @@ public interface ResourceService {
     /**
      * Compact (i.e. remove the history) of a resource
      * @param identifier the identifier
+     * @param from a time after which a resource is to be compacted
+     * @param until a time before which a resource is to be compacted
      * @return a stream of binary IRIs that can be safely purged
      */
-    Stream<IRI> compact(IRI identifier);
+    Stream<IRI> compact(IRI identifier, Instant from, Instant until);
 
     /**
      * Purge a resource from the repository
