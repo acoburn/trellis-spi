@@ -29,8 +29,8 @@ ext {
     license = 'Apache 2'
 
     /* Dependencies */
-    trellisApiVersion = '0.1.0-SNAPSHOT'
-    trellisVocabularyVersion = '0.1.0-SNAPSHOT'
+    trellisApiVersion = '0.1.0'
+    trellisVocabularyVersion = '0.1.0'
     commonsRdfVersion = '0.3.0-incubating'
     jacksonVersion = '2.9.1'
     slf4jVersion = '1.7.25'
@@ -258,5 +258,6 @@ task docs(type: Javadoc) {
 }
 
 checkstyleMain.dependsOn processBuildTools
+afterReleaseBuild.dependsOn uploadArchives
 afterReleaseBuild.dependsOn docs
 
