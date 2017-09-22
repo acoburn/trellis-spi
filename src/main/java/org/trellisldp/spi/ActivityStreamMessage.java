@@ -13,8 +13,10 @@
  */
 package org.trellisldp.spi;
 
+import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_ABSENT;
 import static java.util.stream.Collectors.toList;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.util.List;
@@ -28,6 +30,7 @@ import org.apache.commons.rdf.api.IRI;
  *
  * @author acoburn
  */
+@JsonInclude(NON_ABSENT)
 class ActivityStreamMessage {
 
     /**

@@ -13,8 +13,11 @@
  */
 package org.trellisldp.spi;
 
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
+import static java.util.Optional.empty;
 import static java.util.Optional.of;
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.when;
 import static org.trellisldp.spi.ActivityStreamSerializer.serialize;
@@ -95,5 +98,33 @@ public class ActivityStreamSerializerTest {
 
         assertTrue(map.get("id").equals("info:event/12345"));
         assertTrue(map.get("inbox").equals("info:ldn/inbox"));
+    }
+
+    @Test
+    public void testSerializationStructureNoEmptyElements() throws Exception {
+        when(mockEvent.getInbox()).thenReturn(empty());
+        when(mockEvent.getAgents()).thenReturn(emptyList());
+        final Optional<String> json = serialize(mockEvent);
+        assertTrue(json.isPresent());
+
+        final ObjectMapper mapper = new ObjectMapper();
+        @SuppressWarnings("unchecked")
+        final Map<String, Object> map = mapper.readValue(json.get(), Map.class);
+        assertTrue(map.containsKey("@context"));
+        assertTrue(map.containsKey("id"));
+        assertTrue(map.containsKey("type"));
+        assertFalse(map.containsKey("inbox"));
+        assertTrue(map.containsKey("actor"));
+        assertTrue(map.containsKey("object"));
+
+        final List types = (List) map.get("type");
+        assertTrue(types.contains(Create.getIRIString()));
+
+        assertTrue(AS.URI.contains((String) map.get("@context")));
+
+        final List actor = (List) map.get("actor");
+        assertTrue(actor.isEmpty());
+
+        assertTrue(map.get("id").equals("info:event/12345"));
     }
 }
