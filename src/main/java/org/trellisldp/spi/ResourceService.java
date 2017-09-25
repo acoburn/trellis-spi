@@ -87,7 +87,7 @@ public interface ResourceService {
      * @param partition the partition
      * @return a stream of RDF Triples, containing the resource and its LDP type
      */
-    Stream<Triple> list(String partition);
+    Stream<? extends Triple> list(String partition);
 
     /**
      * Skolemize a blank node
@@ -109,7 +109,7 @@ public interface ResourceService {
      * @param graphNames the graph names to export
      * @return a stream of quads, where each named graph refers to the resource identifier
      */
-    Stream<Quad> export(String partition, Collection<IRI> graphNames);
+    Stream<? extends Quad> export(String partition, Collection<IRI> graphNames);
 
     /**
      * An identifier supplier
