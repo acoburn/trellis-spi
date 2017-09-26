@@ -13,6 +13,7 @@
  */
 package org.trellisldp.spi;
 
+import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Collections.singleton;
 import static java.util.Optional.empty;
@@ -23,6 +24,7 @@ import static org.mockito.Mockito.when;
 import static org.trellisldp.spi.ActivityStreamSerializer.serialize;
 import static org.trellisldp.vocabulary.AS.Create;
 import static org.trellisldp.vocabulary.LDP.Container;
+import static org.trellisldp.vocabulary.PROV.Activity;
 
 import java.util.List;
 import java.util.Map;
@@ -75,6 +77,8 @@ public class ActivityStreamSerializerTest {
 
     @Test
     public void testSerializationStructure() throws Exception {
+        when(mockEvent.getTypes()).thenReturn(asList(Create, Activity));
+
         final Optional<String> json = serialize(mockEvent);
         assertTrue(json.isPresent());
 
@@ -90,6 +94,7 @@ public class ActivityStreamSerializerTest {
 
         final List types = (List) map.get("type");
         assertTrue(types.contains("Create"));
+        assertTrue(types.contains(Activity.getIRIString()));
 
         assertTrue(AS.URI.contains((String) map.get("@context")));
 
