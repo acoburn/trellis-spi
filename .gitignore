@@ -1,3 +1,7 @@
 .gradle
 module-info.java
 build
+.classpath
+.project
+.settings/
+/bin/
