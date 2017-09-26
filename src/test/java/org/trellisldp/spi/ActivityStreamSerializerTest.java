@@ -89,7 +89,7 @@ public class ActivityStreamSerializerTest {
         assertTrue(map.containsKey("object"));
 
         final List types = (List) map.get("type");
-        assertTrue(types.contains(Create.getIRIString()));
+        assertTrue(types.contains("Create"));
 
         assertTrue(AS.URI.contains((String) map.get("@context")));
 
@@ -104,8 +104,12 @@ public class ActivityStreamSerializerTest {
     public void testSerializationStructureNoEmptyElements() throws Exception {
         when(mockEvent.getInbox()).thenReturn(empty());
         when(mockEvent.getAgents()).thenReturn(emptyList());
+        when(mockEvent.getTargetTypes()).thenReturn(emptyList());
+
         final Optional<String> json = serialize(mockEvent);
         assertTrue(json.isPresent());
+
+        System.out.println(json.get());
 
         final ObjectMapper mapper = new ObjectMapper();
         @SuppressWarnings("unchecked")
@@ -114,16 +118,18 @@ public class ActivityStreamSerializerTest {
         assertTrue(map.containsKey("id"));
         assertTrue(map.containsKey("type"));
         assertFalse(map.containsKey("inbox"));
-        assertTrue(map.containsKey("actor"));
+        assertFalse(map.containsKey("actor"));
         assertTrue(map.containsKey("object"));
 
         final List types = (List) map.get("type");
-        assertTrue(types.contains(Create.getIRIString()));
+        assertTrue(types.contains("Create"));
+
+        @SuppressWarnings("unchecked")
+        final Map<String, Object> obj = (Map<String, Object>) map.get("object");
+        assertTrue(obj.containsKey("id"));
+        assertFalse(obj.containsKey("type"));
 
         assertTrue(AS.URI.contains((String) map.get("@context")));
-
-        final List actor = (List) map.get("actor");
-        assertTrue(actor.isEmpty());
 
         assertTrue(map.get("id").equals("info:event/12345"));
     }

@@ -22,6 +22,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import java.util.List;
 
 import org.apache.commons.rdf.api.IRI;
+import org.trellisldp.vocabulary.AS;
 
 /**
  * A structure used for serializing an Event into an ActivityStream 2.0 JSON object
@@ -36,6 +37,7 @@ class ActivityStreamMessage {
     /**
      * The target resource of a message
      */
+    @JsonInclude(NON_ABSENT)
     static class EventResource {
         private String id;
         private List<String> type;
@@ -47,7 +49,7 @@ class ActivityStreamMessage {
          */
         public EventResource(final String id, final List<String> type) {
             this.id = id;
-            this.type = type;
+            this.type = type.isEmpty() ? null : type;
         }
 
         /**
@@ -126,8 +128,12 @@ class ActivityStreamMessage {
         final ActivityStreamMessage msg = new ActivityStreamMessage();
 
         msg.id = event.getIdentifier().getIRIString();
-        msg.type = event.getTypes().stream().map(IRI::getIRIString).collect(toList());
-        msg.actor = event.getAgents().stream().map(IRI::getIRIString).collect(toList());
+        msg.type = event.getTypes().stream().map(IRI::getIRIString)
+            .map(type -> type.startsWith(AS.URI) ? type.substring(AS.URI.length()) : type)
+            .collect(toList());
+
+        final List<String> actors = event.getAgents().stream().map(IRI::getIRIString).collect(toList());
+        msg.actor = actors.isEmpty() ? null : actors;
 
         event.getInbox().map(IRI::getIRIString).ifPresent(inbox -> msg.inbox = inbox);
         event.getTarget().map(IRI::getIRIString).ifPresent(target ->
