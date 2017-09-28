@@ -13,12 +13,16 @@
  */
 package org.trellisldp.spi;
 
+import static org.trellisldp.spi.RDFUtils.TRELLIS_BNODE_PREFIX;
+import static org.trellisldp.spi.RDFUtils.getInstance;
+
 import java.time.Instant;
 import java.util.Collection;
 import java.util.Optional;
 import java.util.function.Supplier;
 import java.util.stream.Stream;
 
+import org.apache.commons.rdf.api.BlankNode;
 import org.apache.commons.rdf.api.Dataset;
 import org.apache.commons.rdf.api.IRI;
 import org.apache.commons.rdf.api.Quad;
@@ -94,14 +98,28 @@ public interface ResourceService {
      * @param term the RDF term
      * @return a skolemized node, if a blank node; otherwise the original term
      */
-    RDFTerm skolemize(RDFTerm term);
+    default RDFTerm skolemize(final RDFTerm term) {
+        if (term instanceof BlankNode) {
+            return getInstance().createIRI(TRELLIS_BNODE_PREFIX + ((BlankNode) term).uniqueReference());
+        }
+        return term;
+    }
 
     /**
      * Un-skolemize a blank node
      * @param term the RDF term
      * @return a blank node, if a previously-skolemized node; otherwise the original term
      */
-    RDFTerm unskolemize(RDFTerm term);
+    default RDFTerm unskolemize(final RDFTerm term) {
+        if (term instanceof IRI) {
+            final String iri = ((IRI) term).getIRIString();
+            if (iri.startsWith(TRELLIS_BNODE_PREFIX)) {
+                return getInstance().createBlankNode(iri.substring(TRELLIS_BNODE_PREFIX.length()));
+            }
+        }
+        return term;
+
+    }
 
     /**
      * Export the complete repository as a stream of Quads
