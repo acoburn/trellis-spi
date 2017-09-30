@@ -13,6 +13,7 @@
  */
 package org.trellisldp.spi;
 
+import static java.util.Optional.of;
 import static org.trellisldp.spi.RDFUtils.TRELLIS_BNODE_PREFIX;
 import static org.trellisldp.spi.RDFUtils.getInstance;
 
@@ -68,7 +69,11 @@ public interface ResourceService {
      *
      * Note: The returned identifier is not guaranteed to exist
      */
-    Optional<IRI> getContainer(IRI identifier);
+    default Optional<IRI> getContainer(final IRI identifier) {
+        final String id = identifier.getIRIString();
+        return of(id).map(x -> x.lastIndexOf('/')).filter(idx -> idx > 0).map(idx -> id.substring(0, idx))
+            .map(getInstance()::createIRI);
+    }
 
     /**
      * Compact (i.e. remove the history) of a resource
@@ -127,7 +132,13 @@ public interface ResourceService {
      * @param graphNames the graph names to export
      * @return a stream of quads, where each named graph refers to the resource identifier
      */
-    Stream<? extends Quad> export(String partition, Collection<IRI> graphNames);
+    default Stream<? extends Quad> export(final String partition, final Collection<IRI> graphNames) {
+        return list(partition).map(Triple::getSubject).filter(x -> x instanceof IRI).map(x -> (IRI) x)
+            // TODO - JDK9 optional to stream
+            .flatMap(id -> get(id).map(Stream::of).orElseGet(Stream::empty))
+            .flatMap(resource -> resource.stream(graphNames).map(q ->
+                getInstance().createQuad(resource.getIdentifier(), q.getSubject(), q.getPredicate(), q.getObject())));
+    }
 
     /**
      * An identifier supplier

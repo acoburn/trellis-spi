@@ -114,8 +114,6 @@ public class ActivityStreamSerializerTest {
         final Optional<String> json = serialize(mockEvent);
         assertTrue(json.isPresent());
 
-        System.out.println(json.get());
-
         final ObjectMapper mapper = new ObjectMapper();
         @SuppressWarnings("unchecked")
         final Map<String, Object> map = mapper.readValue(json.get(), Map.class);
