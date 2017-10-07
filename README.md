@@ -7,7 +7,7 @@
 
 The service interfaces for a Trellis-based repository.
 
-**Please Note:** the `org.trellisldp.spi` package has been deprecated. Please use the `org.trellisldp.api` instead.
+**Please Note:** the `org.trellisldp.spi` package has been deprecated. Please use `org.trellisldp.api` instead.
 
 ## Building
 
