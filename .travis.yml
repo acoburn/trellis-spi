@@ -7,14 +7,10 @@ addons:
   apt:
     packages:
       - oracle-java9-installer
-  sonarcloud:
-    organization: "trellis-ldp"
-    token:
-      secure: "gqq706/iq4xpVsLu1EqkHcQe71FuwhnCBvdiE4xWO4tUXVr/QgXlPEJhnEkowjchQ5NmAd1eFOXVZ2/OJMWlGWbBjBLfRpFOowDdPmxN17M4d9m0XbTkVS83CyXKnUHn/6RZq7tif0qXDYCzG/YMbFdmzOa6T95QBFhyTl4to6rt5eSZsEgYX2q6c+tukSy/VHmbURU9UJ1yq+4HZiS6HFlCDbZcotdDlzzPerqbXsuDwCoj4qck+85tJ28JG0IijZFR8xKnng04vuqnoVuHND2UERhfLog6Zs9mwqiM5Cd+CI1UKHOH9l0sAbgZVzk432y3FoQx+Xi2wtTEV76MFkKJJAPBIn8qd4ESuVdaQuETHNr/9HX95y+M64ZDx4ly/0XFVdP1ac2sVlieQjZ6O2juLdXgf/iQ3WknS/VsLlPwEvaSWRCYYDHukGFUURdlGNOE+KIN98X+SxldcdO7i89p/xVkiiLpX13/3QVRh8Ig+GLYXKGoON+WScPo+VOC3fqqsvgutYBbhrQfgqkZLHbGVopPTM+kP2tKQmlz8m73XySd8Z+vsYvJxk92ICHLKJAYr0xZLFYtcZZDSVLlhNKqQjrDoU3pROeiJ0xIsgkX01GesdKUZWRyWq6l/kuBrlFxiw4aybSdc5THEeK/2kO2CxV52lbTQn1irGye6vI="
 
 jdk:
   - oraclejdk8
   - oraclejdk9
 
 after_success:
-  - ./gradlew jacocoTestReport coveralls sonarqube
+  - ./gradlew jacocoTestReport coveralls

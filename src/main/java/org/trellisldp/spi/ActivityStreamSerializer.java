@@ -26,7 +26,9 @@ import java.util.Optional;
 
 /**
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 final class ActivityStreamSerializer {
 
     private static final ObjectMapper MAPPER = new ObjectMapper();

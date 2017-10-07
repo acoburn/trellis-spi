@@ -24,7 +24,9 @@ import org.apache.commons.rdf.api.Triple;
  * A class that represents a constraint violation in an RDF graph.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public class ConstraintViolation {
 
     private final IRI constraint;

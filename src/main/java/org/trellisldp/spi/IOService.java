@@ -27,7 +27,9 @@ import org.apache.commons.rdf.api.Triple;
  * to/from a concrete RDF 1.1 syntax.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface IOService {
 
     /**

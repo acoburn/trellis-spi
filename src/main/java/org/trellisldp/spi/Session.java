@@ -28,7 +28,9 @@ import org.apache.commons.rdf.api.IRI;
  * Users, groups and delegates are represented as IRIs.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface Session {
 
     /**

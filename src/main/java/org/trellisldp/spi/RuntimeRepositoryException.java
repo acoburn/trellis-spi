@@ -17,7 +17,9 @@ package org.trellisldp.spi;
  * Base class for all trellis unchecked exceptions.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public class RuntimeRepositoryException extends RuntimeException {
 
     private static final long serialVersionUID = 8046489554418284257L;

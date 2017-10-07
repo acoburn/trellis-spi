@@ -21,7 +21,9 @@ import java.util.Optional;
  * provides a mechanism for retrieving and setting namespace values.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface NamespaceService {
 
     /**

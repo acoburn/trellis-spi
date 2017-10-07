@@ -43,7 +43,9 @@ import org.trellisldp.vocabulary.XSD;
  * generating and processing RDF objects.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public final class RDFUtils {
 
     private static RDF rdf = ServiceLoader.load(RDF.class).iterator().next();

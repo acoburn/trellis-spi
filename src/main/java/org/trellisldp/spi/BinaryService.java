@@ -32,7 +32,9 @@ import org.trellisldp.api.Binary;
  * the validity of binary content.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface BinaryService {
 
     /**

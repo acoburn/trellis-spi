@@ -19,7 +19,9 @@ import org.apache.commons.rdf.api.IRI;
  * This service provides some useful methods for handling user values.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface AgentService {
 
     /**

@@ -23,7 +23,9 @@ import org.apache.commons.rdf.api.IRI;
  * on a graph for a particular resource type.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface ConstraintService {
 
     /**

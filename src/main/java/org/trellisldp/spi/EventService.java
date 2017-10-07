@@ -22,7 +22,9 @@ import java.util.Optional;
  * to a message broker.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface EventService {
 
     /**

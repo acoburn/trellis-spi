@@ -19,7 +19,9 @@ import java.util.function.Supplier;
  * The IdentifierService provides a mechanism for creating new identifiers.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface IdentifierService {
 
     /**

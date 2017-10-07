@@ -27,7 +27,9 @@ import org.trellisldp.vocabulary.ACL;
  * and <a href="https://github.com/solid/web-access-control-spec">Solid WebAC specification</a>
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface AccessControlService {
 
     /**

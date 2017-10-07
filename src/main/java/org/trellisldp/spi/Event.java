@@ -26,7 +26,9 @@ import org.apache.commons.rdf.api.IRI;
  * @see <a href="https://www.w3.org/TR/activitystreams-core/">Activity Streams 2.0</a>
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface Event {
 
     /**

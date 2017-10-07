@@ -36,7 +36,9 @@ import org.trellisldp.api.Resource;
  * repository resources.
  *
  * @author acoburn
+ * @deprecated Please use the org.trellisldp.api package instead
  */
+@Deprecated
 public interface ResourceService {
 
     /**
