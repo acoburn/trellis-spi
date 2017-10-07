@@ -5,8 +5,9 @@
 [![Coverage Status](https://coveralls.io/repos/github/trellis-ldp/trellis-spi/badge.svg?branch=master)](https://coveralls.io/github/trellis-ldp/trellis-spi?branch=master)
 [![Maven Central](https://maven-badges.herokuapp.com/maven-central/org.trellisldp/trellis-spi/badge.svg)](https://maven-badges.herokuapp.com/maven-central/org.trellisldp/trellis-spi/)
 
-
 The service interfaces for a Trellis-based repository.
+
+**Please Note:** the `org.trellisldp.spi` package has been deprecated. Please use the `org.trellisldp.api` instead.
 
 ## Building
 
